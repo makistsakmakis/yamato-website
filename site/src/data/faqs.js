@@ -1,0 +1,10 @@
+export const faqs = [
+  { id:"1", question:"What is YAMATO?", answer:"YAMATO is Greece's first premium urban play destination — a space where gaming, social experiences, collectibles, and community come together in a cinematic, immersive environment.", category:"general", order:1 },
+  { id:"2", question:"How do I start playing?", answer:"Simply visit any YAMATO location, get a Playcard at the front desk, load credits, and start exploring. No reservations needed for individual play.", category:"general", order:2 },
+  { id:"3", question:"What age groups is YAMATO suitable for?", answer:"YAMATO is designed for all ages. We have dedicated Kids Games zones, family-friendly areas, and premium experiences for adults. Under 12s must be accompanied by an adult.", category:"general", order:3 },
+  { id:"4", question:"Can I book YAMATO for a private event or party?", answer:"Yes! We offer group bookings and private event packages. Contact us through the Contact page or ask in-store for our events team.", category:"events", order:4 },
+  { id:"5", question:"What payment methods do you accept?", answer:"We accept cash, credit/debit cards, and contactless payments. All game play is through our rechargeable Playcard system.", category:"general", order:5 },
+  { id:"6", question:"Do you sell Trading Card Games?", answer:"Yes! Our TCG Lounge stocks Pokémon, Yu-Gi-Oh!, One Piece, and more. We also host regular tournaments and community events.", category:"gaming", order:6 },
+  { id:"7", question:"What is the Summer Pass?", answer:"The Summer Pass gives you unlimited play throughout the summer season at any YAMATO location, plus exclusive perks and priority access to new games.", category:"passes", order:7 },
+  { id:"8", question:"Where are YAMATO locations?", answer:"We currently have locations in Athens Center (4 Athinaidos St.) and Nea Erythraia (59 El. Venizelou St.). Thessaloniki is coming soon!", category:"store", order:8 },
+];

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YAMATO Admin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#e63946;--bg:#0d0d0d;--surf:#141414;--brd:#252525;
+  --text:#e0e0e0;--muted:#555;--green:#22c55e;
+  --active-brd:#e63946;--sel-bg:rgba(66,133,244,.18);
+  --active-bg:rgba(230,57,70,.14);--hdr:#1a1a1a;--ch:26px;
+}
+body{background:var(--bg);color:var(--text);font:12px/1 'Segoe UI',system-ui,sans-serif;
+  height:100vh;display:flex;flex-direction:column;overflow:hidden;user-select:none}
+
+/* Header */
+header{height:38px;background:var(--surf);border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;padding:0 12px;gap:10px;flex-shrink:0}
+.logo{font-weight:900;font-size:13px;letter-spacing:.15em;color:var(--red)}
+.badge{font-size:9px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);flex-shrink:0}
+.dot.on{background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+#conn-label{font-size:11px;color:var(--muted)}
+.ml{margin-left:auto;display:flex;align-items:center;gap:8px}
+
+/* Layout */
+.app{display:flex;flex:1;overflow:hidden}
+
+/* Sidebar */
+aside{width:175px;background:var(--surf);border-right:1px solid var(--brd);
+  display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
+aside h2{padding:8px 12px 5px;font-size:9px;letter-spacing:.2em;color:var(--muted);
+  text-transform:uppercase;border-bottom:1px solid var(--brd)}
+.tb{display:block;width:100%;text-align:left;padding:7px 12px;background:none;
+  border:none;border-left:3px solid transparent;color:var(--muted);cursor:pointer;font-size:12px}
+.tb:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.tb.active{color:var(--red);border-left-color:var(--red);background:rgba(230,57,70,.06);font-weight:700}
+
+/* Main */
+main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+
+/* Toolbar */
+.bar{height:36px;flex-shrink:0;background:var(--surf);border-bottom:1px solid var(--brd);
+  display:flex;align-items:center;gap:7px;padding:0 10px}
+.tname{font-weight:700}
+.cnt{font-size:11px;color:var(--muted)}
+.bar input[type=text]{background:#1c1c1c;border:1px solid var(--brd);color:var(--text);
+  padding:3px 8px;font-size:12px;border-radius:3px;width:190px}
+.bar input:focus{outline:none;border-color:var(--red)}
+.sp{flex:1}
+.btn{padding:3px 10px;border-radius:3px;border:none;font-size:11px;
+  font-weight:700;cursor:pointer;white-space:nowrap}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-r{background:var(--red);color:#fff}
+.btn-g{background:#15803d;color:#fff}
+.btn-d{background:#202020;color:var(--text);border:1px solid var(--brd)}
+
+/* Grid */
+.grid{flex:1;overflow:auto;position:relative;outline:none}
+table{border-collapse:collapse;table-layout:fixed;width:max-content;min-width:100%}
+thead th{position:sticky;top:0;z-index:2;background:var(--hdr);color:var(--muted);
+  font-size:10px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;
+  padding:0 7px;height:var(--ch);border-right:1px solid var(--brd);
+  border-bottom:2px solid var(--brd);text-align:left;white-space:nowrap;overflow:hidden;
+  transition:background .1s}
+thead th:hover{background:#222;color:var(--text)}
+thead th:first-child{width:28px;text-align:center;min-width:28px}
+tbody td{height:var(--ch);border-right:1px solid var(--brd);border-bottom:1px solid var(--brd);
+  padding:0;position:relative;min-width:80px;max-width:300px}
+tbody td:first-child{min-width:28px;max-width:28px;text-align:center}
+tbody tr:hover td{background:rgba(255,255,255,.025)}
+.cv{display:block;padding:0 7px;height:var(--ch);line-height:var(--ch);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+.cv.nul{color:#3a3a3a;font-style:italic}
+.cv.bt{color:var(--green)}
+.cv.bf{color:#f87171}
+
+/* Cell states */
+td.sel{background:var(--sel-bg)!important}
+td.active{outline:2px solid var(--active-brd);outline-offset:-2px;z-index:1}
+td.active.sel{background:var(--active-bg)!important}
+
+/* Cell editor */
+.ce{position:absolute;inset:0;background:#1e2636;color:#fff;
+  border:2px solid var(--red);padding:0 6px;
+  font:12px/1 'Segoe UI',system-ui,sans-serif;outline:none;
+  width:100%;height:100%;z-index:10}
+
+/* Pager */
+.pgr{height:28px;flex-shrink:0;background:var(--surf);border-top:1px solid var(--brd);
+  display:flex;align-items:center;gap:8px;padding:0 10px;font-size:11px;color:var(--muted)}
+.pgr select{background:#1c1c1c;border:1px solid var(--brd);color:var(--text);
+  padding:1px 5px;font-size:11px;border-radius:3px}
+
+/* Status */
+.sts{height:20px;flex-shrink:0;background:var(--surf);border-top:1px solid var(--brd);
+  display:flex;align-items:center;gap:14px;padding:0 10px;font-size:10px;color:var(--muted)}
+.sts .ok{color:var(--green)}
+.sts .err{color:#f87171}
+
+/* Welcome */
+.ctr{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;color:var(--muted)}
+
+input[type=checkbox]{accent-color:var(--red);cursor:pointer}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="logo">YAMATO</span>
+  <span class="badge">Admin</span>
+  <div class="ml">
+    <div class="dot" id="dot"></div>
+    <span id="conn-label">Connecting…</span>
+  </div>
+</header>
+
+<div class="app">
+  <aside>
+    <h2>Tables</h2>
+    <div id="tlist"><div style="padding:10px 12px;font-size:11px;color:var(--muted)">Loading…</div></div>
+  </aside>
+  <main id="main">
+    <div class="ctr" id="welcome">
+      <svg width="36" height="36" fill="none" stroke="currentColor" viewBox="0 0 24 24" opacity=".12">
+        <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/>
+        <path stroke-width="1.5" d="M3 9h18M9 21V9"/>
+      </svg>
+      <p>Select a table</p>
+    </div>
+  </main>
+</div>
+
+<script>
+// ─── API ─────────────────────────────────────────────────────────────────────
+async function api(method, path, body) {
+  const h = {'Content-Type':'application/json'}
+  if (body) h['Prefer'] = 'return=representation'
+  const r = await fetch('/api' + path, {method, headers:h, body: body ? JSON.stringify(body) : undefined})
+  const t = await r.text()
+  if (!r.ok) throw new Error(t)
+  return t ? JSON.parse(t) : null
+}
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let tbl=null, cols=[], allRows=[], filtered=[]
+let dirty={}       // {id: {col: val}}
+let undo=[]        // [{id,col,old}]
+let clip=null      // {data:[][], h, w}
+let rowSel=new Set()
+
+// Sort
+let sortCol=null, sortDir=1   // 1=asc, -1=desc
+
+// Grid
+let aR=-1,aC=-1            // active cell (row in current page, col index)
+let sR1=-1,sC1=-1,sR2=-1,sC2=-1  // selection range
+let editing=false
+let page=0,ps=100,q=''
+let statusTxt=''
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const r = await fetch('/api/', {headers:{'Content-Type':'application/json'}})
+    if (!r.ok) throw new Error('HTTP '+r.status)
+    const spec = await r.json()
+    let tables=[]
+    if (spec.paths) tables = Object.keys(spec.paths)
+      .filter(p=>p.startsWith('/')&&!p.includes('{')&&p.length>1)
+      .map(p=>p.slice(1)).filter(t=>!t.startsWith('_')).sort()
+    if (!tables.length && spec.definitions)
+      tables = Object.keys(spec.definitions).filter(t=>!t.startsWith('_')).sort()
+    if (!tables.length)
+      tables = ['products','categories','game_categories','games','stores','events','bundles','collectibles','faqs','leads','pages']
+    dot(true, 'Connected · '+tables.length+' tables')
+    document.getElementById('tlist').innerHTML =
+      tables.map(t=>`<button class="tb" onclick="loadTbl('${t}')">${t}</button>`).join('')
+  } catch(e) {
+    dot(false,'Error: '+e.message)
+    document.getElementById('tlist').innerHTML =
+      `<div style="padding:10px 12px;font-size:11px;color:#f87171">${e.message}</div>`
+  }
+}
+
+function dot(on,msg) {
+  document.getElementById('dot').className='dot'+(on?' on':'')
+  document.getElementById('conn-label').textContent=msg
+}
+
+// ─── LOAD TABLE ──────────────────────────────────────────────────────────────
+async function loadTbl(t) {
+  tbl=t; dirty={}; undo=[]; rowSel.clear()
+  aR=-1; aC=-1; editing=false; page=0; q=''
+  document.querySelectorAll('.tb').forEach(b=>b.classList.toggle('active',b.textContent===t))
+  setMain(`<div class="ctr"><p>Loading ${t}…</p></div>`)
+  try {
+    allRows = await api('GET',`/${t}?select=*&order=id&limit=2000`)
+    cols = allRows.length ? Object.keys(allRows[0]) : []
+    filt(); render()
+  } catch(e) {
+    setMain(`<div class="ctr"><p style="color:#f87171">${e.message}</p></div>`)
+  }
+}
+
+function filt() {
+  filtered = q
+    ? allRows.filter(r=>Object.values(r).some(v=>v!=null&&String(v).toLowerCase().includes(q.toLowerCase())))
+    : [...allRows]
+  if (sortCol) {
+    filtered.sort((a,b)=>{
+      const av=a[sortCol], bv=b[sortCol]
+      if(av===null&&bv===null)return 0
+      if(av===null)return sortDir
+      if(bv===null)return -sortDir
+      if(typeof av==='number'&&typeof bv==='number')return(av-bv)*sortDir
+      return String(av).localeCompare(String(bv),undefined,{numeric:true})*sortDir
+    })
+  }
+}
+
+function sortBy(col) {
+  if(sortCol===col){ if(sortDir===1)sortDir=-1; else{sortCol=null;sortDir=1} }
+  else{sortCol=col;sortDir=1}
+  page=0; filt(); render()
+}
+
+function pgRows() { return filtered.slice(page*ps,(page+1)*ps) }
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function setMain(h) { document.getElementById('main').innerHTML=h }
+
+function render() {
+  const rows=pgRows(), nd=Object.keys(dirty).length
+  const pages=Math.max(1,Math.ceil(filtered.length/ps))
+
+  const colW = cols.map(c=>Math.min(280,Math.max(80,c.length*8+24)))
+
+  const thead = `<colgroup><col style="width:28px">${cols.map((c,i)=>`<col style="width:${colW[i]}px">`).join('')}</colgroup>
+  <thead><tr>
+    <th><input type="checkbox" id="chkAll" onchange="togAll(this)"></th>
+    ${cols.map(c=>{
+      const ind=sortCol===c?(sortDir>0?' ▲':' ▼'):''
+      const active=sortCol===c?'color:#e63946;':''
+      return `<th onclick="sortBy('${c}')" style="cursor:pointer;${active}" title="Sort by ${c}">${esc(c)}<span style="font-size:9px">${ind}</span></th>`
+    }).join('')}
+  </tr></thead>`
+
+  const tbody='<tbody>'+rows.map((row,ri)=>{
+    const id=row.id
+    return `<tr>
+      <td><input type="checkbox" onchange="togRow(this,'${id}')" ${rowSel.has(id)?'checked':''}></td>
+      ${cols.map((c,ci)=>{
+        const v=dirty[id]?.[c]!==undefined?dirty[id][c]:row[c]
+        const nil=v===null||v===undefined
+        const cls=nil?'nul':typeof v==='boolean'?(v?'bt':'bf'):''
+        const d=nil?'NULL':String(v)
+        return `<td id="c${ri}_${ci}" onmousedown="mdown(event,${ri},${ci})" onmouseover="mover(event,${ri},${ci})">`+
+          `<span class="cv ${cls}" title="${esc(d)}">${esc(trunc(d))}</span></td>`
+      }).join('')}
+    </tr>`
+  }).join('')+'</tbody>'
+
+  setMain(`
+    <div class="bar">
+      <span class="tname">${tbl}</span>
+      <span class="cnt">${filtered.length} rows</span>
+      <input type="text" placeholder="🔍 Search…" value="${esc(q)}" oninput="doSearch(this.value)">
+      <div class="sp"></div>
+      <button class="btn btn-d" onclick="loadTbl(tbl)">↺</button>
+      <button class="btn btn-d" id="bDel" onclick="doDel()" ${rowSel.size?'':'disabled'}>🗑 (${rowSel.size})</button>
+      <button class="btn btn-d" id="bFill" onclick="doFillDown()" title="Fill selection down from top cell (Ctrl+D)" ${Math.abs(sR2-sR1)>0?'':'disabled'}>Fill ↓</button>
+      <button class="btn ${nd?'btn-r':'btn-d'}" id="bSave" onclick="doSave()" ${nd?'':'disabled'}>💾 Save (${nd})</button>
+    </div>
+    <div class="grid" id="grid" tabindex="0" onkeydown="onKey(event)">
+      <table>${thead}${tbody}</table>
+    </div>
+    <div class="pgr">
+      <button class="btn btn-d" onclick="goPg(-1)" ${page===0?'disabled':''}>‹</button>
+      <span>Page ${page+1}/${pages} · ${filtered.length} rows</span>
+      <button class="btn btn-d" onclick="goPg(1)" ${page>=pages-1?'disabled':''}>›</button>
+      <div class="sp"></div>
+      Per page: <select onchange="setPg(this.value)">${[50,100,200,500].map(n=>`<option ${ps===n?'selected':''} value="${n}">${n}</option>`).join('')}</select>
+    </div>
+    <div class="sts">
+      <span id="sCell">—</span>
+      <span id="sMsg">${statusTxt}</span>
+      <div class="sp"></div>
+      <span>Click=select · Type=edit · Enter/Tab/↑↓←→=navigate · Ctrl+C/V=copy/paste · Ctrl+D=fill down · Ctrl+Z=undo · Ctrl+S=save · Del=clear</span>
+    </div>`)
+
+  applySelUI()
+  focusGrid()
+}
+
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+const trunc=(s,n=55)=>s.length>n?s.slice(0,n)+'…':s
+function focusGrid(){const g=document.getElementById('grid');if(g)g.focus()}
+
+// ─── SELECTION ───────────────────────────────────────────────────────────────
+let mouseHeld=false
+document.addEventListener('mouseup',()=>mouseHeld=false)
+
+function mdown(e,r,c) {
+  if(e.button!==0)return
+  if(editing&&aR===r&&aC===c)return
+  e.preventDefault()
+  exitEdit(true)
+  if(e.shiftKey&&aR>=0){sR2=r;sC2=c}
+  else setAct(r,c,false)
+  mouseHeld=true
+  focusGrid()
+}
+
+function mover(e,r,c) {
+  if(!mouseHeld||!(e.buttons&1))return
+  aR=r;aC=c;sR2=r;sC2=c;applySelUI();updSCell()
+}
+
+function setAct(r,c,ext) {
+  const rows=pgRows()
+  r=Math.max(0,Math.min(rows.length-1,r))
+  c=Math.max(0,Math.min(cols.length-1,c))
+  if(rows.length===0)return
+  aR=r;aC=c
+  if(!ext){sR1=r;sC1=c;sR2=r;sC2=c}
+  else{sR2=r;sC2=c}
+  applySelUI()
+  scrollToAct()
+  updSCell()
+}
+
+function applySelUI() {
+  document.querySelectorAll('td.sel,td.active').forEach(t=>{t.classList.remove('sel','active')})
+  if(aR<0)return
+  const r1=Math.min(sR1,sR2),r2=Math.max(sR1,sR2)
+  const c1=Math.min(sC1,sC2),c2=Math.max(sC1,sC2)
+  for(let r=r1;r<=r2;r++)for(let c=c1;c<=c2;c++){
+    const td=document.getElementById(`c${r}_${c}`)
+    if(td)td.classList.add('sel')
+  }
+  const act=document.getElementById(`c${aR}_${aC}`)
+  if(act)act.classList.add('active')
+}
+
+function scrollToAct() {
+  const td=document.getElementById(`c${aR}_${aC}`)
+  if(td)td.scrollIntoView({block:'nearest',inline:'nearest'})
+}
+
+function updSCell() {
+  const el=document.getElementById('sCell')
+  if(!el||aR<0)return
+  const r1=Math.min(sR1,sR2),r2=Math.max(sR1,sR2)
+  const c1=Math.min(sC1,sC2),c2=Math.max(sC1,sC2)
+  const rn=r2-r1+1,cn=c2-c1+1
+  el.textContent=rn>1||cn>1?`${rn}R×${cn}C`:`${cols[aC]||''}  [row ${aR+1+page*ps}]`
+}
+
+// ─── KEYBOARD ────────────────────────────────────────────────────────────────
+function onKey(e) {
+  const ctrl=e.ctrlKey||e.metaKey
+
+  // No active cell
+  if(aR<0&&!editing){
+    if(!ctrl&&e.key.length===1){e.preventDefault();setAct(0,0,false)}
+    return
+  }
+
+  // ── EDIT MODE ──
+  if(editing){
+    if(e.key==='Escape'){e.preventDefault();exitEdit(false);return}
+    if(e.key==='Enter'){e.preventDefault();exitEdit(true);move(1,0,false);return}
+    if(e.key==='Tab'){e.preventDefault();exitEdit(true);move(0,e.shiftKey?-1:1,false);return}
+    if(e.key==='ArrowUp'){e.preventDefault();exitEdit(true);move(-1,0,false);return}
+    if(e.key==='ArrowDown'){e.preventDefault();exitEdit(true);move(1,0,false);return}
+    // ArrowLeft/Right → browser handles cursor movement in input
+    return
+  }
+
+  // ── NAV MODE ──
+  if(e.key==='ArrowUp'){e.preventDefault();move(-1,0,e.shiftKey);return}
+  if(e.key==='ArrowDown'){e.preventDefault();move(1,0,e.shiftKey);return}
+  if(e.key==='ArrowLeft'){e.preventDefault();move(0,-1,e.shiftKey);return}
+  if(e.key==='ArrowRight'){e.preventDefault();move(0,1,e.shiftKey);return}
+  if(e.key==='Tab'){e.preventDefault();move(0,e.shiftKey?-1:1,false);return}
+  if(e.key==='Enter'||e.key==='F2'){e.preventDefault();enterEdit(true);return}
+  if((e.key==='Delete'||e.key==='Backspace')&&!ctrl){e.preventDefault();clearSel();return}
+
+  if(ctrl){
+    if(e.key==='s'||e.key==='S'){e.preventDefault();doSave();return}
+    if(e.key==='z'||e.key==='Z'){e.preventDefault();doUndo();return}
+    if(e.key==='c'||e.key==='C'){e.preventDefault();doCopy();return}
+    if(e.key==='v'||e.key==='V'){e.preventDefault();doPaste();return}
+    if(e.key==='d'||e.key==='D'){e.preventDefault();doFillDown();return}
+    return
+  }
+
+  // Printable key → enter edit with that character
+  if(e.key.length===1){e.preventDefault();enterEdit(false,e.key);return}
+}
+
+function move(dr,dc,ext){
+  const rows=pgRows()
+  let r=aR+dr,c=aC+dc
+  if(c<0){c=cols.length-1;r--}
+  if(c>=cols.length){c=0;r++}
+  r=Math.max(0,Math.min(rows.length-1,r))
+  if(ext){aR=r;aC=c;sR2=r;sC2=c;applySelUI();scrollToAct();updSCell()}
+  else setAct(r,c,false)
+}
+
+// ─── EDIT MODE ───────────────────────────────────────────────────────────────
+function enterEdit(keep,startChar) {
+  if(aR<0)return
+  const col=cols[aC]
+  if(col==='id')return  // never edit primary key
+  const row=pgRows()[aR]
+  if(!row)return
+  const id=row.id
+  const cur=dirty[id]?.[col]!==undefined?dirty[id][col]:row[col]
+  const disp=cur===null?'':String(cur)
+
+  editing=true
+  const td=document.getElementById(`c${aR}_${aC}`)
+  if(!td)return
+
+  const inp=document.createElement('input')
+  inp.className='ce'
+  inp.value=keep?disp:(startChar||'')
+  td.innerHTML=''
+  td.appendChild(inp)
+  inp.focus()
+  if(keep)inp.setSelectionRange(inp.value.length,inp.value.length)
+  inp.addEventListener('mousedown',e=>e.stopPropagation())
+}
+
+function exitEdit(save) {
+  if(!editing)return
+  const td=document.getElementById(`c${aR}_${aC}`)
+  const inp=td?.querySelector('.ce')
+  if(save&&inp){
+    const row=pgRows()[aR]
+    if(row){
+      const col=cols[aC],id=row.id
+      const orig=row[col]
+      let v=inp.value
+      // Null coercion
+      if(v.trim()===''||v==='NULL'||v==='null')v=null
+      else if(typeof orig==='number'&&!isNaN(Number(v)))v=Number(v)
+      else if(typeof orig==='boolean')v=(v==='true'||v==='1')
+      const old=dirty[id]?.[col]!==undefined?dirty[id][col]:orig
+      if(JSON.stringify(old)!==JSON.stringify(v)){
+        undo.push({id,col,old})
+        if(!dirty[id])dirty[id]={}
+        dirty[id][col]=v
+      }
+    }
+  }
+  editing=false
+  // Restore cell display
+  if(td&&aR>=0){
+    const row=pgRows()[aR]
+    if(row){
+      const col=cols[aC],id=row.id
+      const v=dirty[id]?.[col]!==undefined?dirty[id][col]:row[col]
+      const nil=v===null||v===undefined
+      const cls=nil?'nul':typeof v==='boolean'?(v?'bt':'bf'):''
+      const d=nil?'NULL':String(v)
+      td.innerHTML=`<span class="cv ${cls}" title="${esc(d)}">${esc(trunc(d))}</span>`
+      td.classList.add('active','sel')
+    }
+  }
+  updSaveBtn()
+}
+
+function updSaveBtn(){
+  const n=Object.keys(dirty).length
+  const b=document.getElementById('bSave')
+  if(b){b.textContent=`💾 Save (${n})`;b.disabled=!n;b.className=`btn ${n?'btn-r':'btn-d'}`}
+}
+
+// ─── CLEAR SELECTION ─────────────────────────────────────────────────────────
+function clearSel(){
+  const rows=pgRows()
+  const r1=Math.min(sR1,sR2),r2=Math.max(sR1,sR2)
+  const c1=Math.min(sC1,sC2),c2=Math.max(sC1,sC2)
+  for(let r=r1;r<=r2;r++)for(let c=c1;c<=c2;c++){
+    const row=rows[r];if(!row)continue
+    const col=cols[c],id=row.id
+    if(col==='id')continue
+    undo.push({id,col,old:dirty[id]?.[col]!==undefined?dirty[id][col]:row[col]})
+    if(!dirty[id])dirty[id]={}
+    dirty[id][col]=null
+    const td=document.getElementById(`c${r}_${c}`)
+    if(td)td.innerHTML=`<span class="cv nul">NULL</span>`
+  }
+  updSaveBtn()
+}
+
+// ─── COPY ────────────────────────────────────────────────────────────────────
+function doCopy(){
+  const rows=pgRows()
+  const r1=Math.min(sR1,sR2),r2=Math.max(sR1,sR2)
+  const c1=Math.min(sC1,sC2),c2=Math.max(sC1,sC2)
+  const data=[]
+  for(let r=r1;r<=r2;r++){
+    const rd=[]
+    for(let c=c1;c<=c2;c++){
+      const row=rows[r];if(!row){rd.push('');continue}
+      const col=cols[c],id=row.id
+      const v=dirty[id]?.[col]!==undefined?dirty[id][col]:row[col]
+      rd.push(v===null?'':String(v))
+    }
+    data.push(rd)
+  }
+  clip={data,h:r2-r1+1,w:c2-c1+1}
+  navigator.clipboard.writeText(data.map(r=>r.join('\t')).join('\n')).catch(()=>{})
+  setSts(`Copied ${clip.h}R×${clip.w}C`)
+}
+
+// ─── PASTE ───────────────────────────────────────────────────────────────────
+async function doPaste(){
+  const rows=pgRows()
+  let data=clip?.data
+  try{const t=await navigator.clipboard.readText();if(t)data=t.split('\n').map(r=>r.split('\t'))}catch(e){}
+  if(!data)return
+  const startR=aR,startC=aC
+  for(let dr=0;dr<data.length;dr++)for(let dc=0;dc<data[dr].length;dc++){
+    const r=startR+dr,c=startC+dc
+    if(r>=rows.length||c>=cols.length)continue
+    const row=rows[r];if(!row)continue
+    const col=cols[c],id=row.id
+    if(col==='id')continue
+    let v=data[dr][dc]
+    const orig=row[col]
+    if(v===''||v==='NULL')v=null
+    else if(typeof orig==='number'&&!isNaN(Number(v)))v=Number(v)
+    else if(typeof orig==='boolean')v=(v==='true'||v==='1')
+    undo.push({id,col,old:dirty[id]?.[col]!==undefined?dirty[id][col]:orig})
+    if(!dirty[id])dirty[id]={}
+    dirty[id][col]=v
+  }
+  render()
+  setAct(startR,startC,false)
+  setSts(`Pasted ${data.length}R×${(data[0]||[]).length}C`)
+}
+
+// ─── FILL DOWN ───────────────────────────────────────────────────────────────
+function doFillDown(){
+  const rows=pgRows()
+  const r1=Math.min(sR1,sR2),r2=Math.max(sR1,sR2)
+  const c1=Math.min(sC1,sC2),c2=Math.max(sC1,sC2)
+  if(r1===r2)return
+  for(let c=c1;c<=c2;c++){
+    const col=cols[c];if(col==='id')continue
+    const topRow=rows[r1];if(!topRow)continue
+    const fillVal=dirty[topRow.id]?.[col]!==undefined?dirty[topRow.id][col]:topRow[col]
+    for(let r=r1+1;r<=r2;r++){
+      const row=rows[r];if(!row)continue
+      const id=row.id
+      undo.push({id,col,old:dirty[id]?.[col]!==undefined?dirty[id][col]:row[col]})
+      if(!dirty[id])dirty[id]={}
+      dirty[id][col]=fillVal
+    }
+  }
+  render()
+  sR1=r1;sC1=c1;sR2=r2;sC2=c2;aR=r1;aC=c1
+  applySelUI()
+  setSts(`Fill Down: ${(r2-r1)*(c2-c1+1)} cells`)
+}
+
+// ─── UNDO ────────────────────────────────────────────────────────────────────
+function doUndo(){
+  if(!undo.length)return
+  const {id,col,old}=undo.pop()
+  if(!dirty[id])dirty[id]={}
+  dirty[id][col]=old
+  const orig=allRows.find(r=>String(r.id)===String(id))
+  if(orig&&Object.entries(dirty[id]).every(([k,v])=>JSON.stringify(v)===JSON.stringify(orig[k])))
+    delete dirty[id]
+  // Update visible cell if on current page
+  const ri=pgRows().findIndex(r=>String(r.id)===String(id))
+  if(ri>=0){
+    const ci=cols.indexOf(col)
+    if(ci>=0){
+      const td=document.getElementById(`c${ri}_${ci}`)
+      if(td){
+        const v=dirty[id]?.[col]!==undefined?dirty[id][col]:old
+        const nil=v===null||v===undefined
+        const cls=nil?'nul':typeof v==='boolean'?(v?'bt':'bf'):''
+        const d=nil?'NULL':String(v)
+        td.innerHTML=`<span class="cv ${cls}" title="${esc(d)}">${esc(trunc(d))}</span>`
+      }
+    }
+  }
+  updSaveBtn()
+  setSts('Undone')
+}
+
+// ─── SAVE ────────────────────────────────────────────────────────────────────
+async function doSave(){
+  if(editing)exitEdit(true)
+  if(!Object.keys(dirty).length)return
+  const btn=document.getElementById('bSave')
+  if(btn){btn.textContent='Saving…';btn.disabled=true}
+  let ok=0,fail=0
+  for(const [id,changes] of Object.entries(dirty)){
+    try{
+      await api('PATCH',`/${tbl}?id=eq.${id}`,changes)
+      const row=allRows.find(r=>String(r.id)===String(id))
+      if(row)Object.assign(row,changes)
+      ok++
+    }catch(e){fail++;console.error(e)}
+  }
+  dirty={};undo=[]
+  setSts(fail?`✗ ${ok} saved, ${fail} failed`:`✓ ${ok} row(s) saved`)
+  filt();render()
+}
+
+// ─── DELETE ──────────────────────────────────────────────────────────────────
+async function doDel(){
+  if(!rowSel.size)return
+  if(!confirm(`Delete ${rowSel.size} row(s)? Cannot be undone.`))return
+  let ok=0
+  for(const id of rowSel){
+    try{await api('DELETE',`/${tbl}?id=eq.${id}`);ok++}catch(e){}
+  }
+  allRows=allRows.filter(r=>!rowSel.has(r.id))
+  rowSel.clear();dirty={}
+  setSts(`✓ Deleted ${ok}`)
+  filt();render()
+}
+
+// ─── ROW CHECKBOXES ──────────────────────────────────────────────────────────
+function togRow(cb,id){if(cb.checked)rowSel.add(id);else rowSel.delete(id);updDelBtn()}
+function togAll(cb){pgRows().forEach(r=>{if(cb.checked)rowSel.add(r.id);else rowSel.delete(r.id)});updDelBtn()}
+function updDelBtn(){const b=document.getElementById('bDel');if(b){b.disabled=!rowSel.size;b.textContent=`🗑 (${rowSel.size})`}}
+
+// ─── MISC ────────────────────────────────────────────────────────────────────
+function doSearch(v){q=v;page=0;filt();render()}
+function goPg(d){exitEdit(true);page=Math.max(0,page+d);render()}
+function setPg(v){ps=parseInt(v);page=0;render()}
+function setSts(t){statusTxt=t;const el=document.getElementById('sMsg');if(el){el.textContent=t;el.className=t.startsWith('✓')?'ok':t.startsWith('✗')?'err':''}}
+
+init()
+</script>
+</body>
+</html>

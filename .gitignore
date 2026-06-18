@@ -1,0 +1,54 @@
+# ── Dependencies ──────────────────────────────────────────────
+node_modules/
+
+# ── Build output ──────────────────────────────────────────────
+dist/
+build/
+admin-dist/
+
+# ── Environment variables (NEVER commit) ──────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Secret scripts (contain hardcoded API keys/tokens) ────────
+yamato-admin-server.py
+find_images.py
+find_images_v2.py
+find_images_no_toysshop.py
+site/set-vercel-env.ps1
+
+# ── Vercel & Netlify local config ─────────────────────────────
+.vercel/
+.netlify/
+
+# ── Vite temp files ───────────────────────────────────────────
+*.timestamp-*.mjs
+
+# ── Vercel deploy zips ────────────────────────────────────────
+site/deploy-*.zip
+
+# ── Large binary / office files ───────────────────────────────
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+*.doc
+*.docx
+*.spec
+*.zip
+*.exe
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor ────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp

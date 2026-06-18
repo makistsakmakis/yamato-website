@@ -1,0 +1,8 @@
+export const collectibles = [
+  { id:"1", name:"Pokémon TCG Booster Box", type:"tcg", description:"Latest expansion booster box. 36 packs of pure potential.", image_url:"https://images.pokemontcg.io/sv3pt5/booster.png", available_in_store:true, drop_date:null },
+  { id:"2", name:"Yu-Gi-Oh! Collector Tin", type:"tcg", description:"Premium collector tin with exclusive promo cards and booster packs.", image_url:"https://images.unsplash.com/photo-1612404730960-5c71577fca11?w=600&q=80", available_in_store:true, drop_date:null },
+  { id:"3", name:"One Piece TCG Starter Deck", type:"tcg", description:"Jump into the One Piece TCG with this ready-to-play starter deck.", image_url:"https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=600&q=80", available_in_store:true, drop_date:null },
+  { id:"4", name:"YAMATO Logo Tee — Black", type:"apparel", description:"Premium heavyweight cotton tee with embroidered YAMATO kanji logo.", image_url:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80", available_in_store:true, drop_date:null },
+  { id:"5", name:"YAMATO Snapback Cap", type:"accessory", description:"Structured snapback with woven YAMATO patch. One size fits all.", image_url:"https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80", available_in_store:true, drop_date:null },
+  { id:"6", name:"YAMATO x Artist Series Figure", type:"figure", description:"Limited edition designer vinyl figure. Exclusive YAMATO collaboration.", image_url:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80", available_in_store:false, drop_date:"2026-08-01" },
+];

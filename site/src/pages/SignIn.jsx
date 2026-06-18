@@ -9,9 +9,10 @@ export default function SignIn() {
   const { signInWithEmail, authLoading, user } = useAuth()
   const navigate = useNavigate()
 
-  const [email, setEmail]   = useState('')
-  const [sent, setSent]     = useState(false)
-  const [error, setError]   = useState('')
+  const [email, setEmail]       = useState('')
+  const [sent, setSent]         = useState(false)
+  const [error, setError]       = useState('')
+  const [rememberMe, setRememberMe] = useState(true)
 
   // If already signed in, go to dashboard
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+    localStorage.setItem('yamato_remember_me', rememberMe ? '1' : '0')
     const redirectTo = `${window.location.origin}/my-yamato`
     const { error: err } = await signInWithEmail(email.trim().toLowerCase(), redirectTo)
     if (err) { setError(err.message); return }
@@ -32,7 +34,7 @@ export default function SignIn() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
-          <img src="/images/yamato-logo.png" alt="YAMATO" className="h-12 mx-auto mb-4" />
+          <img src="/logo-white.png" alt="YAMATO" className="h-12 mx-auto mb-4" />
         </div>
 
         <div className="bg-yamato-darkgray border border-white/10 p-8">
@@ -63,6 +65,20 @@ export default function SignIn() {
                 </div>
 
                 {error && <p className="text-yamato-red text-xs">{error}</p>}
+
+                <label className="flex items-center gap-2.5 cursor-pointer select-none">
+                  <div
+                    onClick={() => setRememberMe(v => !v)}
+                    className={`w-4 h-4 border flex items-center justify-center flex-none transition-colors ${rememberMe ? 'bg-yamato-red border-yamato-red' : 'border-white/30 bg-transparent'}`}
+                  >
+                    {rememberMe && (
+                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                  <span className="text-white/50 text-xs">{a.rememberMe || 'Remember me for 30 days'}</span>
+                </label>
 
                 <button
                   type="submit"

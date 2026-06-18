@@ -39,6 +39,19 @@ export function AuthProvider({ children }) {
 
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      // "Remember me" enforcement: if user did NOT check remember me,
+      // sign them out when the browser is reopened (sessionStorage clears on close)
+      if (session) {
+        const rememberMe = localStorage.getItem('yamato_remember_me')
+        const sessionActive = sessionStorage.getItem('yamato_session_active')
+        if (rememberMe === '0' && !sessionActive) {
+          // Browser was closed — session should not persist
+          supabase.auth.signOut()
+          setLoading(false)
+          return
+        }
+        sessionStorage.setItem('yamato_session_active', '1')
+      }
       setSession(session)
       setUser(session?.user ?? null)
       loadUserData(session?.user?.id).finally(() => setLoading(false))
@@ -46,6 +59,7 @@ export function AuthProvider({ children }) {
 
     // Listen for auth changes (includes magic link redirects)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) sessionStorage.setItem('yamato_session_active', '1')
       setSession(session)
       setUser(session?.user ?? null)
       loadUserData(session?.user?.id)

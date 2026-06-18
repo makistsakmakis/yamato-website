@@ -240,6 +240,7 @@ const translations = {
       linkSentDesc: 'We sent a sign-in link to {email}. Click it to access your YAMATO account.',
       spamNote: "Can't find it? Check your spam folder.",
       tryAgain: 'Try a different email',
+      rememberMe: 'Remember me for 30 days',
       noAccount: 'Not a member yet?',
       joinCTA: 'Join Club →',
     },

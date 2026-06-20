@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { LanguageProvider } from './context/LanguageContext'
 import { CartProvider } from './context/CartContext'
 import { AuthProvider } from './context/AuthContext'
 import Layout from './components/Layout'
 import CartDrawer from './components/shop/CartDrawer'
+import IntroPage from './pages/IntroPage'
 import Home from './pages/Home'
 import TheExperience from './pages/TheExperience'
 import YAGaming from './pages/YAGaming'
@@ -26,6 +28,12 @@ import MyYamato from './pages/MyYamato'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState(true)
+
+  if (showIntro) {
+    return <IntroPage onEnter={() => setShowIntro(false)} />
+  }
+
   return (
     <LanguageProvider>
       <AuthProvider>
@@ -53,13 +61,4 @@ export default function App() {
                 <Route path="join-club" element={<JoinClub />} />
                 <Route path="sign-in" element={<SignIn />} />
                 <Route path="my-yamato" element={<MyYamato />} />
-                <Route path="privacy-policy" element={<PrivacyPolicy />} />
-              </Route>
-            </Routes>
-            <CartDrawer />
-          </BrowserRouter>
-        </CartProvider>
-      </AuthProvider>
-    </LanguageProvider>
-  )
-}
+                <Route path="privacy-poli

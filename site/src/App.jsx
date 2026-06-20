@@ -47,7 +47,7 @@ export default function App() {
                 <Route path="ya-social" element={<YASocial />} />
                 <Route path="ya-collectibles" element={<YACollectibles />} />
                 <Route path="tcg-lounge" element={<Navigate to="/ya-collectibles" replace />} />
-                <Route path="bundles-passes" element={<BundlesPasses />} />
+                <Route path="bundles-passes" element={<Navigate to="/how-to-play" replace />} />
                 <Route path="how-to-play" element={<HowToPlay />} />
                 <Route path="stores" element={<Stores />} />
                 <Route path="events" element={<Events />} />
@@ -61,4 +61,13 @@ export default function App() {
                 <Route path="join-club" element={<JoinClub />} />
                 <Route path="sign-in" element={<SignIn />} />
                 <Route path="my-yamato" element={<MyYamato />} />
-                <Route path="privacy-poli
+                <Route path="privacy-policy" element={<PrivacyPolicy />} />
+              </Route>
+            </Routes>
+            <CartDrawer />
+          </BrowserRouter>
+        </CartProvider>
+      </AuthProvider>
+    </LanguageProvider>
+  )
+}

@@ -1,0 +1,32 @@
+@echo off
+echo ================================================
+echo  YAMATO - Commit, Push & Deploy
+echo ================================================
+echo.
+
+cd /d "C:\Users\alexa\Documents\GitHub\yamato-website"
+
+echo [1/4] Setting git identity...
+git config --global user.email "makistsakmakis@gmail.com"
+git config --global user.name "makistsakmakis"
+
+echo.
+echo [2/4] Committing changes...
+git add .
+git commit -m "Update site"
+
+echo.
+echo [3/4] Pushing to GitHub...
+git push origin main
+
+echo.
+echo [4/4] Deploying to Vercel...
+cd site
+set NODE_OPTIONS=--use-system-ca
+npx vercel deploy --prod
+
+echo.
+echo ================================================
+echo  Done! Check https://site-psi-pied-16.vercel.app
+echo ================================================
+pause

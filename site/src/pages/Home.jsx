@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { getFeaturedGames } from '../data/games'
 import { categories } from '../data/categories'
 import { getFeaturedEvents } from '../data/events'
-import GameCard from '../components/GameCard'
-import GameModal from '../components/GameModal'
 import CategoryCard from '../components/CategoryCard'
 import EventCard from '../components/EventCard'
 import FAQAccordion from '../components/FAQAccordion'
@@ -62,9 +59,7 @@ function StatItem({ value, label, delay }) {
 }
 
 export default function Home() {
-  const featured = getFeaturedGames()
   const featuredEvents = getFeaturedEvents()
-  const [selected, setSelected] = useState(null)
   const [featuredPrizes, setFeaturedPrizes] = useState([])
   const { t } = useLang()
   const h = t.home
@@ -118,21 +113,6 @@ export default function Home() {
             <StatItem value="∞"    label={t.stats.fun}       delay={450} />
           </div>
         </div>
-      </section>
-
-      {/* FEATURED GAMES */}
-      <section className="py-20 max-w-7xl mx-auto px-4 fade-in">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="section-subtitle">{h.featuredGames.sub}</p>
-            <h2 className="section-title text-white">{h.featuredGames.title}</h2>
-          </div>
-          <Link to="/ya-gaming" className="btn-secondary text-xs py-2 px-4 hidden sm:flex">{t.cta.viewAll}</Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {featured.map(g => <GameCard key={g.id} game={g} onClick={setSelected} />)}
-        </div>
-        <Link to="/ya-gaming" className="btn-secondary text-xs py-2.5 px-6 mt-6 sm:hidden block text-center w-full">{h.featuredGames.mobileCta}</Link>
       </section>
 
       {/* CATEGORIES */}
@@ -308,7 +288,6 @@ export default function Home() {
         </div>
       </section>
 
-      {selected && <GameModal game={selected} onClose={() => setSelected(null)} />}
     </div>
   )
 }

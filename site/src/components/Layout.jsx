@@ -16,11 +16,9 @@ export default function Layout() {
 
   const navItems = [
     { label: t.nav.home,        short: 'Home',        path: '/' },
-    { label: t.nav.experience,  short: 'Experience',  path: '/the-experience' },
     { label: t.nav.gaming,      short: 'YA Gaming',   path: '/ya-gaming' },
     { label: t.nav.social,      short: 'YA Social',   path: '/ya-social' },
     { label: t.nav.collectibles,short: 'Collectibles / TCG', path: '/ya-collectibles' },
-    { label: t.nav.bundles,     short: 'Bundles',     path: '/bundles-passes' },
     { label: t.nav.howto,       short: 'How to Play', path: '/how-to-play' },
     { label: t.nav.stores,      short: 'Stores',      path: '/stores' },
     { label: t.nav.events,      short: 'Events',      path: '/events' },

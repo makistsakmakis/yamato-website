@@ -250,6 +250,25 @@ export async function uploadAvatar(userId, file) {
   return data.publicUrl;
 }
 
+// ── Form submissions ──────────────────────────────────────────────────────────
+// Replaces Netlify Forms. Anonymous inserts — requires anon INSERT RLS policy.
+
+export async function submitContactMessage({ type = 'contact', name, email, phone, store, subject, message }) {
+  if (!supabase) throw new Error('Supabase not configured');
+  const { error } = await supabase
+    .from('contact_messages')
+    .insert({ type, name, email, phone, store, subject, message });
+  if (error) throw error;
+}
+
+export async function submitClubWaitlist({ name, email, store, gdpr_consent = false }) {
+  if (!supabase) throw new Error('Supabase not configured');
+  const { error } = await supabase
+    .from('club_waitlist')
+    .insert({ name, email, store, gdpr_consent });
+  if (error) throw error;
+}
+
 // ── Date formatting ───────────────────────────────────────────────────────────
 // Uses browser regional settings (navigator.language) automatically
 

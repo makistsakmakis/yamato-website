@@ -5,7 +5,7 @@
 @layer base {
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background-color: #050505; color: #F5F5F5; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { background-color: #050505; color: #F5F5F5; font-family: 'Play', 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   ::selection { background: rgba(227,6,19,0.4); color: #fff; }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #0d0d0d; }

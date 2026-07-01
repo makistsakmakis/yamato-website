@@ -7,11 +7,8 @@ import Layout from './components/Layout'
 import CartDrawer from './components/shop/CartDrawer'
 import IntroPage from './pages/IntroPage'
 import Home from './pages/Home'
-import TheExperience from './pages/TheExperience'
 import YAGaming from './pages/YAGaming'
 import YASocial from './pages/YASocial'
-import YACollectibles from './pages/YACollectibles'
-import BundlesPasses from './pages/BundlesPasses'
 import HowToPlay from './pages/HowToPlay'
 import Stores from './pages/Stores'
 import Events from './pages/Events'
@@ -42,11 +39,11 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="the-experience" element={<TheExperience />} />
+                <Route path="the-experience" element={<Navigate to="/" replace />} />
                 <Route path="ya-gaming" element={<YAGaming />} />
                 <Route path="ya-social" element={<YASocial />} />
-                <Route path="ya-collectibles" element={<YACollectibles />} />
-                <Route path="tcg-lounge" element={<Navigate to="/ya-collectibles" replace />} />
+                <Route path="ya-collectibles" element={<Navigate to="/shop" replace />} />
+                <Route path="tcg-lounge" element={<Navigate to="/shop" replace />} />
                 <Route path="bundles-passes" element={<Navigate to="/how-to-play" replace />} />
                 <Route path="how-to-play" element={<HowToPlay />} />
                 <Route path="stores" element={<Stores />} />

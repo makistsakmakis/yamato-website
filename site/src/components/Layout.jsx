@@ -18,10 +18,9 @@ export default function Layout() {
     { label: t.nav.home,        short: 'Home',        path: '/' },
     { label: t.nav.gaming,      short: 'YA Gaming',   path: '/ya-gaming' },
     { label: t.nav.social,      short: 'YA Social',   path: '/ya-social' },
-    { label: t.nav.collectibles,short: 'Collectibles / TCG', path: '/ya-collectibles' },
-    { label: t.nav.howto,       short: 'How to Play', path: '/how-to-play' },
+    { label: t.nav.events,      short: 'YA Events',   path: '/events' },
+    { label: t.nav.howto,       short: 'The Card',    path: '/how-to-play' },
     { label: t.nav.stores,      short: 'Stores',      path: '/stores' },
-    { label: t.nav.events,      short: 'Events',      path: '/events' },
     { label: t.nav.club,        short: 'Club',        path: '/yamato-club' },
     { label: t.nav.contact,     short: 'Contact',     path: '/contact' },
   ]
@@ -60,7 +59,7 @@ export default function Layout() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-yamato-black/95 backdrop-blur border-b border-white/5' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 flex items-center h-16 gap-4">
           <Link to="/" className="flex items-center flex-none group">
-            <img src="/logo-color.png" alt="YAMATO" className="h-14 w-auto" />
+            <img src="/logo-badge.png" alt="YAMATO" className="h-14 w-auto" />
           </Link>
 
           <nav className="hidden lg:flex flex-1 min-w-0 items-center gap-0.5 overflow-hidden">
@@ -230,7 +229,7 @@ export default function Layout() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="mb-5">
-                <img src="/logo-white.png" alt="YAMATO" className="h-16 w-auto" />
+                <img src="/logo-badge.png" alt="YAMATO" className="h-16 w-auto" />
               </div>
               <p className="text-white/50 text-sm leading-relaxed max-w-xs">{t.footer.desc}</p>
               <p className="text-yamato-red text-xs font-bold tracking-[0.3em] uppercase mt-3">Μπες στο παιχνίδι.</p>

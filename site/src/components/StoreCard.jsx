@@ -14,10 +14,16 @@ export default function StoreCard({ store }) {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-          {store.active && (
+          {store.active && !store.opening_soon && (
             <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               <span className="text-white/70 text-[9px] font-bold tracking-widest uppercase">Open Now</span>
+            </div>
+          )}
+          {store.opening_soon && (
+            <div className="absolute bottom-3 left-3 flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-yamato-red animate-pulse" />
+              <span className="text-white/80 text-[9px] font-bold tracking-widest uppercase">Opening Soon</span>
             </div>
           )}
         </div>
@@ -35,9 +41,11 @@ export default function StoreCard({ store }) {
           <div>
             <p className="section-subtitle">Location</p>
             <h3 className="text-white font-bold text-lg">{store.name}</h3>
-            {!store.active && <span className="tag bg-white/10 text-white/50 mt-1">Coming Soon</span>}
+            {store.opening_soon
+              ? <span className="inline-block text-[10px] font-bold tracking-widest uppercase bg-yamato-red/15 text-yamato-red px-2 py-0.5 mt-1">Opening Soon</span>
+              : !store.active && <span className="inline-block text-[10px] font-bold tracking-widest uppercase bg-white/10 text-white/50 px-2 py-0.5 mt-1">Coming Soon</span>}
           </div>
-          {store.active && !store.video_url && (
+          {store.active && !store.opening_soon && !store.video_url && (
             <div className="w-2 h-2 rounded-full bg-green-400 mt-1 animate-pulse" />
           )}
         </div>

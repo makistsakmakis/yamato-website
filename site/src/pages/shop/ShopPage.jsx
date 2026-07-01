@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, Search, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { getShopProducts, getShopCategories } from '../../lib/supabase';
 import ProductCard from '../../components/shop/ProductCard';
@@ -99,6 +100,7 @@ function FilterPanel({ search, setSearch, categories, activeCategory, setActiveC
 export default function ShopPage() {
   const { lang, t } = useLang()
   const ui = t.ui
+  const [searchParams] = useSearchParams()
 
   const [products, setProducts]     = useState([]);
   const [categories, setCategories] = useState([]);
@@ -124,6 +126,20 @@ export default function ShopPage() {
     }
     load();
   }, []);
+
+  // Preselect category from ?category= (e.g. /shop?category=TCG)
+  useEffect(() => {
+    const wanted = searchParams.get('category')
+    if (!wanted || categories.length === 0) return
+    const w = wanted.toLowerCase()
+    const match = categories.find(c => {
+      const slug = typeof c === 'string' ? c : c.category_slug
+      const nameGr = typeof c === 'string' ? '' : (c.category_name_gr || '')
+      const nameEn = typeof c === 'string' ? '' : (c.category_name_en || '')
+      return [slug, nameGr, nameEn].some(v => v && v.toLowerCase().includes(w))
+    })
+    if (match) setActiveCategory(typeof match === 'string' ? match : match.category_slug)
+  }, [categories, searchParams]);
 
   const activeFilterCount = [search, activeCategory, activeBrand].filter(Boolean).length
 

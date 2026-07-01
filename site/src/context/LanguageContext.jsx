@@ -6,8 +6,8 @@ const translations = {
     nav: {
       home: 'Home', experience: 'The Experience', gaming: 'YA Gaming',
       social: 'YA Social', collectibles: 'Collectibles / TCG', tcg: 'TCG Lounge',
-      bundles: 'Bundles & Passes', howto: 'How to Play', stores: 'Stores',
-      events: 'Events', club: 'YAMATO Club', contact: 'Contact', shop: 'Shop',
+      bundles: 'Bundles & Passes', howto: 'The Card', stores: 'Stores',
+      events: 'YA Events', club: 'YAMATO Club', contact: 'Contact', shop: 'Shop',
       prizes: 'Prizes',
     },
     hero: {
@@ -146,7 +146,7 @@ const translations = {
         custom: { title: 'Need something specific?', desc: 'Group bookings, corporate events, birthday packages — we\'ll tailor it for you.', cta: 'Contact Us' },
       },
       howto: {
-        hero: { sub: 'How to Play', title: 'Get Into the Game.', desc: 'Everything you need to know to start your YAMATO journey.' },
+        hero: { sub: 'The Card', title: 'The YAMATO Card.', desc: 'One rechargeable card unlocks every machine, at every YAMATO location.' },
         steps: { label: 'Step by Step', title: "It's Simple" },
         stepItems: [
           { n:'01', title:'Visit a YAMATO Location', desc:'Walk into any YAMATO store — Athens Center or Nea Erythraia. No booking required for individual play.' },
@@ -154,7 +154,7 @@ const translations = {
           { n:'03', title:'Explore the Floor', desc:'Browse 100+ machines across 10 categories. Tap your Playcard on any machine to start playing.' },
           { n:'04', title:'Win, Level Up, Repeat', desc:'Collect tickets from redemption games, challenge friends, discover new experiences. The fun never stops.' },
         ],
-        playcard: { label: 'Your Key to YAMATO', title: 'The YAMATO Playcard', p1: 'Reloadable, trackable, and works on every machine at every location. Load as little as €5 or stack up for a full session.', p2: 'Available at the front desk of all YAMATO locations.', cta: 'See Passes' },
+        playcard: { label: 'Your Key to YAMATO', title: 'The YAMATO Playcard', p1: 'Reloadable, trackable, and works on every machine at every location. Load your credits and swipe to play.', p2: 'Available at the front desk of all YAMATO locations.', cta: 'See Passes' },
         faq: { label: 'FAQ', title: 'Common Questions' },
       },
       stores: {
@@ -165,7 +165,7 @@ const translations = {
         openInMaps: 'Open in Maps',
       },
       events: {
-        hero: { sub: 'Events & Social Hub', title: "What's On.", desc: 'Tournaments, retro nights, family days, championships. The YAMATO event calendar.' },
+        hero: { sub: 'YA Events', title: "What's On.", desc: 'Tournaments, retro nights, family days, championships. The YAMATO event calendar.' },
         featured: { label: 'Featured', title: "Don't Miss" },
         upcoming: { label: 'Upcoming', title: 'All Events' },
         social: { label: 'Social', title: 'Follow the Action', desc: 'Stay updated on all events, drops, and community highlights.' },
@@ -318,8 +318,8 @@ const translations = {
     nav: {
       home: 'Αρχική', experience: 'Η Εμπειρία', gaming: 'YA Gaming',
       social: 'YA Social', collectibles: 'Collectibles / TCG', tcg: 'TCG Lounge',
-      bundles: 'Πακέτα & Πάσα', howto: 'Πώς Παίζεται', stores: 'Καταστήματα',
-      events: 'Εκδηλώσεις', club: 'YAMATO Club', contact: 'Επικοινωνία', shop: 'Shop',
+      bundles: 'Πακέτα & Πάσα', howto: 'The Card', stores: 'Καταστήματα',
+      events: 'YA Events', club: 'YAMATO Club', contact: 'Επικοινωνία', shop: 'Shop',
       prizes: 'Prizes',
     },
     hero: {
@@ -458,7 +458,7 @@ const translations = {
         custom: { title: 'Χρειάζεσαι κάτι συγκεκριμένο;', desc: 'Ομαδικές κρατήσεις, εταιρικές εκδηλώσεις, πακέτα γενεθλίων — θα το προσαρμόσουμε για σένα.', cta: 'Επικοινωνία' },
       },
       howto: {
-        hero: { sub: 'Πώς Παίζεται', title: 'Μπες στο Παιχνίδι.', desc: 'Όλα όσα πρέπει να ξέρεις για να ξεκινήσεις το ταξίδι σου στο YAMATO.' },
+        hero: { sub: 'The Card', title: 'Η Κάρτα YAMATO.', desc: 'Μία επαναφορτιζόμενη κάρτα ξεκλειδώνει κάθε μηχάνημα, σε κάθε κατάστημα YAMATO.' },
         steps: { label: 'Βήμα Βήμα', title: 'Είναι Απλό' },
         stepItems: [
           { n:'01', title:'Επισκέψου ένα YAMATO', desc:'Μπες σε οποιοδήποτε κατάστημα YAMATO — Κέντρο Αθήνας ή Νέα Ερυθραία. Δεν απαιτείται κράτηση για ατομικό παιχνίδι.' },
@@ -466,7 +466,7 @@ const translations = {
           { n:'03', title:'Εξερεύνησε τον Χώρο', desc:'Πάνω από 100 μηχανήματα σε 10 κατηγορίες. Άγγιξε την Playcard σου σε οποιοδήποτε μηχάνημα για να αρχίσεις.' },
           { n:'04', title:'Νίκα, Ανέβα Επίπεδο, Επανάλαβε', desc:'Μάζεψε tickets από redemption games, προκάλεσε φίλους, ανακάλυψε νέες εμπειρίες. Η διασκέδαση δεν σταματά.' },
         ],
-        playcard: { label: 'Το Κλειδί σου για το YAMATO', title: 'Η YAMATO Playcard', p1: 'Επαναφορτιζόμενη, παρακολουθήσιμη και λειτουργεί σε κάθε μηχάνημα σε κάθε τοποθεσία. Φόρτωσε από €5 ή στοιβάξτε για πλήρη session.', p2: 'Διαθέσιμη στην υποδοχή όλων των YAMATO.', cta: 'Δες τα Πάσα' },
+        playcard: { label: 'Το Κλειδί σου για το YAMATO', title: 'Η YAMATO Playcard', p1: 'Επαναφορτιζόμενη, παρακολουθήσιμη και λειτουργεί σε κάθε μηχάνημα σε κάθε τοποθεσία. Φόρτωσε τα credits σου και παίξε.', p2: 'Διαθέσιμη στην υποδοχή όλων των YAMATO.', cta: 'Δες τα Πάσα' },
         faq: { label: 'FAQ', title: 'Συχνές Ερωτήσεις' },
       },
       stores: {
@@ -477,7 +477,7 @@ const translations = {
         openInMaps: 'Άνοιγμα στο Maps',
       },
       events: {
-        hero: { sub: 'Εκδηλώσεις & Social Hub', title: 'Τι Γίνεται.', desc: 'Τουρνουά, retro βραδιές, οικογενειακές ημέρες, πρωταθλήματα. Το ημερολόγιο εκδηλώσεων YAMATO.' },
+        hero: { sub: 'YA Events', title: 'Τι Γίνεται.', desc: 'Τουρνουά, retro βραδιές, οικογενειακές ημέρες, πρωταθλήματα. Το ημερολόγιο εκδηλώσεων YAMATO.' },
         featured: { label: 'Προτεινόμενα', title: 'Μην το Χάσεις' },
         upcoming: { label: 'Επερχόμενα', title: 'Όλες οι Εκδηλώσεις' },
         social: { label: 'Social', title: 'Ακολούθησε τη Δράση', desc: 'Μείνε ενήμερος για όλες τις εκδηλώσεις, drops και highlights της κοινότητας.' },
@@ -629,8 +629,8 @@ const translations = {
     nav: {
       home: 'ホーム', experience: '体験', gaming: 'YAゲーミング',
       social: 'YAソーシャル', collectibles: 'YAコレクタブル', tcg: 'TCGラウンジ',
-      bundles: 'バンドル＆パス', howto: '遊び方', stores: '店舗',
-      events: 'イベント', club: 'YAMATOクラブ', contact: 'お問い合わせ', shop: 'ショップ',
+      bundles: 'バンドル＆パス', howto: 'The Card', stores: '店舗',
+      events: 'YA Events', club: 'YAMATOクラブ', contact: 'お問い合わせ', shop: 'ショップ',
       prizes: 'プライズ',
     },
     hero: {
@@ -769,7 +769,7 @@ const translations = {
         custom: { title: '特定のものが必要ですか？', desc: 'グループ予約、コーポレートイベント、誕生日パッケージ。', cta: 'お問い合わせ' },
       },
       howto: {
-        hero: { sub: '遊び方', title: 'ゲームに入れ。', desc: 'YAMATOの旅を始めるために知っておくべきすべて。' },
+        hero: { sub: 'The Card', title: 'YAMATOカード。', desc: '一枚の再チャージ可能なカードで、すべての店舗のすべての機械が遊べます。' },
         steps: { label: 'ステップごとに', title: '簡単です' },
         stepItems: [
           { n:'01', title:'YAMATO店舗を訪問', desc:'アテネセンターまたはネア・エリスレアのYAMATO店舗へ。予約不要。' },
@@ -777,7 +777,7 @@ const translations = {
           { n:'03', title:'フロアを探索', desc:'プレイカードを任意の機械にタップして開始。' },
           { n:'04', title:'勝って、レベルアップ、繰り返す', desc:'チケットを集め、友達に挑戦し、新しい体験を発見。' },
         ],
-        playcard: { label: 'YAMATOへの鍵', title: 'YAMATOプレイカード', p1: '再チャージ可能、すべての機械で使用可能。', p2: 'すべてのYAMATO店舗で利用可能。', cta: 'パスを見る' },
+        playcard: { label: 'YAMATOへの鍵', title: 'YAMATOプレイカード', p1: '再チャージ可能、すべての店舗のすべての機械で使用可能。クレジットをロードしてタッチで遊ぶ。', p2: 'すべてのYAMATO店舗で利用可能。', cta: 'パスを見る' },
         faq: { label: 'よくある質問', title: 'よくある質問' },
       },
       stores: {
@@ -788,7 +788,7 @@ const translations = {
         openInMaps: 'マップで開く',
       },
       events: {
-        hero: { sub: 'イベント＆ソーシャルハブ', title: '開催中のイベント。', desc: 'トーナメント、レトロナイト、ファミリーデー。' },
+        hero: { sub: 'YA Events', title: '開催中のイベント。', desc: 'トーナメント、レトロナイト、ファミリーデー。' },
         featured: { label: '注目', title: 'お見逃しなく' },
         upcoming: { label: '近日開催', title: 'すべてのイベント' },
         social: { label: 'ソーシャル', title: 'アクションをフォロー', desc: 'すべてのイベント、ドロップをチェック。' },

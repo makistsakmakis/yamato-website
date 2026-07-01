@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { categories } from '../data/categories'
 import { getFeaturedEvents } from '../data/events'
-import CategoryCard from '../components/CategoryCard'
 import EventCard from '../components/EventCard'
 import FAQAccordion from '../components/FAQAccordion'
 import { faqs } from '../data/faqs'
@@ -11,7 +9,153 @@ import { IconController, IconGroup, IconBag, IconCard } from '../components/Icon
 import { getPrizeShowcase } from '../lib/supabase'
 
 const PILLAR_ICONS = [IconController, IconGroup, IconBag, IconCard]
-const PILLAR_LINKS = ['/ya-gaming', '/ya-social', '/ya-collectibles', '/tcg-lounge']
+const PILLAR_LINKS = ['/ya-gaming', '/ya-social', '/shop', '/shop']
+
+// Experience tab control content (see "Choose your night")
+const EXPERIENCE_TABS = [
+  {
+    key: 'gameplay', en: 'GAMEPLAY', jp: '遊ぶ',
+    punch: '95 machines',
+    body: "From claw machines and racing cabinets to pinball, retro legends and VR. A swipe with the YAMATO card and you're in.",
+    ctas: [
+      { label: 'Check the Zones', to: '/ya-gaming' },
+      { label: 'Get your CARD', to: '/how-to-play' },
+    ],
+    photos: ['/experience/photo3.jpg', '/experience/photo1.jpg'],
+  },
+  {
+    key: 'collections', en: 'COLLECTIONS', jp: '集める',
+    punch: 'KIWAMI — the collection',
+    body: 'Pokémon TCG, graded cards, designer toys and anime figures in museum-grade display cases. Come for the open, stay for the Vault.',
+    ctas: [
+      { label: 'Get in the Action', to: '/events' },
+      { label: 'Buy Online', to: '/shop?category=TCG' },
+    ],
+    photos: ['/experience/photo5.jpg'],
+  },
+  {
+    key: 'events', en: 'EVENTS', jp: '祝う',
+    punch: 'Your space',
+    body: 'Birthdays, corporate Events, Tournaments. We take care of food, drink, and play — you just show up.',
+    ctas: [
+      { label: 'Find Out', to: '/events' },
+      { label: 'Book your Night', to: '/contact' },
+    ],
+    photos: ['/experience/photo2.jpg'],
+  },
+  {
+    key: 'social', en: 'SOCIAL PLAY', jp: '社交',
+    punch: 'Bring the whole Gang!',
+    body: "YAMATO's Social Entertainment & AR zone is where the magic happens for groups. Challenge each other at AR Darts, or gather around the shuffleboard.",
+    ctas: [
+      { label: 'Find Out', to: '/ya-social' },
+      { label: 'Book your Night', to: '/contact' },
+    ],
+    photos: ['/experience/photo4.jpg'],
+  },
+]
+
+function ExperienceTabs() {
+  const [active, setActive] = useState(0)
+  const [photoIdx, setPhotoIdx] = useState(0)
+  const [slider, setSlider] = useState({ left: 0, width: 0 })
+  const tabRefs = useRef([])
+  const tab = EXPERIENCE_TABS[active]
+
+  // Position the red slider under the active tab
+  useEffect(() => {
+    const move = () => {
+      const el = tabRefs.current[active]
+      if (el) setSlider({ left: el.offsetLeft, width: el.offsetWidth })
+    }
+    move()
+    window.addEventListener('resize', move)
+    return () => window.removeEventListener('resize', move)
+  }, [active])
+
+  // Reset carousel when tab changes; auto-advance if multiple photos
+  useEffect(() => {
+    setPhotoIdx(0)
+    if (tab.photos.length < 2) return
+    const id = setInterval(() => setPhotoIdx(i => (i + 1) % tab.photos.length), 4000)
+    return () => clearInterval(id)
+  }, [active])
+
+  return (
+    <div>
+      {/* Tabs */}
+      <div className="relative mb-8">
+        <div className="flex gap-6 sm:gap-10 overflow-x-auto nav-no-scrollbar">
+          {EXPERIENCE_TABS.map((tb, i) => (
+            <button
+              key={tb.key}
+              ref={el => (tabRefs.current[i] = el)}
+              onClick={() => setActive(i)}
+              className="pb-4 flex-none text-left focus:outline-none group"
+            >
+              <span className={`block font-black text-lg sm:text-2xl tracking-tight uppercase transition-colors ${active === i ? 'text-white' : 'text-white/40 group-hover:text-white/70'}`}>
+                {tb.en}
+              </span>
+              <span className={`block text-sm mt-0.5 transition-colors ${active === i ? 'text-yamato-red' : 'text-white/25 group-hover:text-yamato-red/60'}`}>
+                {tb.jp}
+              </span>
+            </button>
+          ))}
+        </div>
+        {/* thin gray line + red slider */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-white/15" />
+        <div
+          className="absolute bottom-0 h-1 bg-yamato-red transition-all duration-300 ease-out"
+          style={{ left: slider.left, width: slider.width }}
+        />
+      </div>
+
+      {/* Panel */}
+      <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        {/* Left: text + CTAs */}
+        <div className="flex flex-col">
+          <h3 className="text-3xl md:text-4xl font-black text-white uppercase leading-tight mb-6">{tab.punch}</h3>
+          <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-md mb-auto">{tab.body}</p>
+          <div className="flex flex-col sm:flex-row gap-3 mt-8">
+            {tab.ctas.map((c, i) => (
+              <Link
+                key={c.to + i}
+                to={c.to}
+                className={i === 0 ? 'btn-primary text-xs px-6 py-3.5' : 'btn-ghost text-xs px-6 py-3.5'}
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        {/* Right: photo / carousel */}
+        <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[340px] bg-yamato-gray rounded-sm overflow-hidden border border-white/5">
+          {tab.photos.map((src, i) => (
+            <img
+              key={src}
+              src={src}
+              alt={tab.en}
+              loading="lazy"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === photoIdx ? 'opacity-100' : 'opacity-0'}`}
+            />
+          ))}
+          {tab.photos.length > 1 && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+              {tab.photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setPhotoIdx(i)}
+                  className={`w-2 h-2 rounded-full transition-colors ${i === photoIdx ? 'bg-yamato-red' : 'bg-white/40'}`}
+                  aria-label={`Photo ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function useCountUp(target, duration, start) {
   const [count, setCount] = useState(0)
@@ -74,26 +218,27 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center hero-grid overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-yamato-black/50 to-yamato-black" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yamato-red/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Giant Japanese watermark — 温かい歓迎 (warm welcome) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden" aria-hidden="true">
+          <span className="font-black leading-none whitespace-nowrap" style={{ fontSize: '20vw', color: '#83071f', opacity: 0.14 }}>温かい歓迎</span>
+        </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-yamato-red/10 border border-yamato-red/20 px-4 py-1.5 rounded-full mb-8 fade-in">
             <div className="w-1.5 h-1.5 bg-yamato-red rounded-full animate-pulse" />
             <span className="text-yamato-red text-xs font-bold tracking-widest uppercase">{t.hero.badge}</span>
           </div>
-          <div className="mb-6 fade-in" style={{ animationDelay: '100ms' }}>
-            <img src="/logo-color.png" alt="YAMATO" className="h-20 md:h-28 w-auto mx-auto" />
-          </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-none mb-6 fade-in" style={{ animationDelay: '200ms' }}>
-            {t.hero.h1a}<br /><span className="text-yamato-red">{t.hero.h1b}</span><br />{t.hero.h1c}
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight text-white leading-[0.95] mb-6 fade-in" style={{ animationDelay: '150ms' }}>
+            PLAY <span className="text-yamato-red">LIKE IN</span> TOKYO
           </h1>
-          <p className="text-white/50 text-lg md:text-xl max-w-xl mx-auto mb-4 fade-in" style={{ animationDelay: '300ms' }}>
-            {t.hero.sub}
+          <p className="text-white/45 text-sm md:text-base max-w-xl mx-auto mb-2 fade-in" style={{ animationDelay: '280ms' }}>
+            大和へようこそ　·　59 El. Venizelou, N. Erythraia
           </p>
-          <p className="text-yamato-red font-bold tracking-[0.3em] uppercase text-sm mb-10 fade-in" style={{ animationDelay: '350ms' }}>
-            {t.hero.tagline}
+          <p className="text-white/45 text-sm md:text-base max-w-xl mx-auto mb-10 fade-in" style={{ animationDelay: '340ms' }}>
+            An arcade panorama full of claw, racing, pinball, retro &amp; VR. Come and stay.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in" style={{ animationDelay: '400ms' }}>
-            <Link to="/the-experience" className="btn-primary text-sm px-8 py-4">{t.hero.cta1}</Link>
-            <Link to="/stores" className="btn-ghost text-sm px-8 py-4">{t.hero.cta2}</Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in" style={{ animationDelay: '420ms' }}>
+            <Link to="/stores" className="btn-primary text-sm px-8 py-4">{t.hero.cta2}</Link>
+            <Link to="/how-to-play" className="btn-ghost text-sm px-8 py-4">The Card</Link>
           </div>
         </div>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
@@ -115,19 +260,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CATEGORIES */}
+      {/* CHOOSE YOUR NIGHT — experience tabs */}
       <section className="py-20 bg-yamato-dark border-y border-white/5 fade-in">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="section-subtitle">{h.categories.sub}</p>
-              <h2 className="section-title text-white">{h.categories.title}</h2>
-            </div>
-            <Link to="/ya-gaming" className="btn-secondary text-xs py-2 px-4 hidden sm:flex">{t.cta.browseAll}</Link>
+          <div className="mb-10">
+            <p className="section-subtitle">遊び方 · HOW TO EXPERIENCE IT</p>
+            <h2 className="section-title text-white">Choose your night</h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {categories.map(c => <CategoryCard key={c.id} category={c} />)}
-          </div>
+          <ExperienceTabs />
         </div>
       </section>
 

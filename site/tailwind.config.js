@@ -10,7 +10,10 @@ export default {
           'gray-mid': '#2a2a2a', 'gray-light': '#3a3a3a', white: '#F5F5F5', neon: '#FF0033',
         },
       },
-      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      fontFamily: {
+        sans: ['Play', 'Inter', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+      },
       boxShadow: {
         'red-glow': '0 0 20px rgba(227,6,19,0.3), 0 0 40px rgba(227,6,19,0.1)',
         'red-glow-sm': '0 0 10px rgba(227,6,19,0.25)', card: '0 4px 24px rgba(0,0,0,0.5)',

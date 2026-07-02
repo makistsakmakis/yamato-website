@@ -25,6 +25,17 @@ const translations = {
     },
     cta: { findStore: 'Find a Store', joinClub: 'Join the Club', viewAll: 'View All', browseAll: 'Browse All' },
     home: {
+      panorama: 'An arcade panorama full of claw, racing, pinball, retro & VR. Come and stay.',
+      experience: {
+        label: 'HOW TO EXPERIENCE IT',
+        title: 'Choose your night',
+        tabs: {
+          gameplay:    { punch: '95 machines', body: "From claw machines and racing cabinets to pinball, retro legends and VR. A swipe with the YAMATO card and you're in.", cta1: 'Check the Zones', cta2: 'Get your Card' },
+          collections: { punch: 'KIWAMI — the collection', body: 'Pokémon TCG, graded cards, designer toys and anime figures in museum-grade display cases. Come for the open, stay for the Vault.', cta1: 'Get in the Action', cta2: 'Buy Online' },
+          events:      { punch: 'Your space', body: 'Birthdays, corporate events, tournaments. We take care of food, drink, and play — you just show up.', cta1: 'Find Out', cta2: 'Book your Night' },
+          social:      { punch: 'Bring the whole Gang!', body: "YAMATO's Social Entertainment & AR zone is where the magic happens for groups. Challenge each other at AR Darts, or gather around the shuffleboard.", cta1: 'Find Out', cta2: 'Book your Night' },
+        },
+      },
       featuredGames: { sub: 'Step Inside', title: 'The Lineup.', mobileCta: 'View All Games' },
       categories: { sub: 'Explore', title: 'Game Categories' },
       prizeDrops: {
@@ -337,6 +348,17 @@ const translations = {
     },
     cta: { findStore: 'Βρες Κατάστημα', joinClub: 'Γίνε Μέλος', viewAll: 'Όλα', browseAll: 'Αναζήτηση' },
     home: {
+      panorama: 'Ένα arcade πανόραμα γεμάτο claw, racing, pinball, retro & VR. Έλα και μείνε.',
+      experience: {
+        label: 'ΠΩΣ ΝΑ ΤΟ ΖΗΣΕΙΣ',
+        title: 'Διάλεξε τη βραδιά σου',
+        tabs: {
+          gameplay:    { punch: '95 μηχανήματα', body: 'Από claw machines και racing cabinets μέχρι pinball, retro θρύλους και VR. Ένα swipe με την κάρτα YAMATO και είσαι μέσα.', cta1: 'Δες τις Ζώνες', cta2: 'Πάρε την Κάρτα' },
+          collections: { punch: 'KIWAMI — η συλλογή', body: 'Pokémon TCG, graded κάρτες, designer toys και anime φιγούρες σε βιτρίνες μουσειακού επιπέδου. Έλα για το open, μείνε για το Vault.', cta1: 'Μπες στη Δράση', cta2: 'Αγόρασε Online' },
+          events:      { punch: 'Ο χώρος σου', body: 'Γενέθλια, εταιρικά events, τουρνουά. Εμείς αναλαμβάνουμε φαγητό, ποτό και παιχνίδι — εσύ απλά έλα.', cta1: 'Μάθε Περισσότερα', cta2: 'Κλείσε τη Βραδιά σου' },
+          social:      { punch: 'Φέρε όλη την Παρέα!', body: 'Η ζώνη Social Entertainment & AR του YAMATO είναι εκεί που γίνεται η μαγεία για ομάδες. Προκαλέστε ο ένας τον άλλον στο AR Darts ή μαζευτείτε γύρω από το shuffleboard.', cta1: 'Μάθε Περισσότερα', cta2: 'Κλείσε τη Βραδιά σου' },
+        },
+      },
       featuredGames: { sub: 'Step Inside', title: 'The Lineup.', mobileCta: 'Όλα τα Games' },
       categories: { sub: 'Εξερεύνηση', title: 'Κατηγορίες Games' },
       prizeDrops: {
@@ -648,6 +670,17 @@ const translations = {
     },
     cta: { findStore: '店舗を探す', joinClub: 'クラブに参加', viewAll: '全て見る', browseAll: '検索' },
     home: {
+      panorama: 'クレーン、レーシング、ピンボール、レトロ、VRが揃うアーケードパノラマ。来て、とどまれ。',
+      experience: {
+        label: '体験のしかた',
+        title: '夜を選べ',
+        tabs: {
+          gameplay:    { punch: '95台のマシン', body: 'クレーンマシンやレーシング筐体からピンボール、レトロの名作、VRまで。YAMATOカードをかざせば準備完了。', cta1: 'ゾーンを見る', cta2: 'カードを手に入れる' },
+          collections: { punch: 'KIWAMI — ザ・コレクション', body: 'ポケモンTCG、鑑定済みカード、デザイナートイ、アニメフィギュアを美術館級のディスプレイケースで。オープンに来て、Vaultにとどまれ。', cta1: 'アクションに参加', cta2: 'オンラインで購入' },
+          events:      { punch: 'あなたの空間', body: '誕生日、コーポレートイベント、トーナメント。食事、ドリンク、遊びは私たちにお任せ — あなたは来るだけ。', cta1: '詳しく見る', cta2: '予約する' },
+          social:      { punch: '仲間を全員連れてこい！', body: 'YAMATOのソーシャル&ARゾーンは、グループにとって魔法が生まれる場所。ARダーツで勝負したり、シャッフルボードを囲んだり。', cta1: '詳しく見る', cta2: '予約する' },
+        },
+      },
       featuredGames: { sub: 'ハイライト', title: 'フィーチャードゲーム', mobileCta: '全ゲームを見る' },
       categories: { sub: '探索', title: 'ゲームカテゴリー' },
       prizeDrops: {

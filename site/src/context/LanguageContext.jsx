@@ -3,6 +3,24 @@ import { createContext, useContext, useState } from 'react'
 const translations = {
   en: {
     lang: 'EN',
+    cookies: {
+      text: 'We use essential cookies to run YAMATO (sign-in, cart). With your consent we may also use cookies to improve the site.',
+      accept: 'Accept', decline: 'Decline', privacy: 'Privacy Policy',
+    },
+    checkout: {
+      store: 'YAMATO STORE', title: 'Checkout', empty: 'Your cart is empty.',
+      shipping: 'Shipping Details',
+      f_name: 'Full name', f_email: 'Email', f_phone: 'Phone', f_address: 'Address', f_city: 'City', f_postal: 'Postal code',
+      payment: 'Payment Method',
+      noCard: 'Card payments are not supported yet. Available payment methods:',
+      codTitle: 'Cash on delivery', codDesc: 'Pay the courier on delivery.',
+      bankTitle: 'Bank transfer / e-banking', bankDesc: 'Deposit to the YAMATO account using your order number as the reference.',
+      submit: 'Place Order', processing: 'Processing…',
+      note: 'On submit, an email with your order details will open, addressed to YAMATO.',
+      summary: 'Order Summary', subtotal: 'Subtotal', codFeeRow: 'Cash on delivery', total: 'Total',
+      emTitle: 'NEW YAMATO ORDER', emCustomer: 'Customer', emAddress: 'Address', emPayment: 'Payment method',
+      emItems: 'Items', emCod: 'Cash on delivery', emBank: 'Bank transfer / e-banking', emOrderSubject: 'New order',
+    },
     nav: {
       home: 'Home', experience: 'The Experience', gaming: 'YA Gaming',
       social: 'YA Social', collectibles: 'Collectibles / TCG', tcg: 'TCG Lounge',
@@ -24,6 +42,16 @@ const translations = {
       legal: 'Privacy Policy · Terms of Use · GDPR',
     },
     cta: { findStore: 'Find a Store', joinClub: 'Join the Club', viewAll: 'View All', browseAll: 'Browse All' },
+    forms: {
+      name: 'Name', namePh: 'Your name', fullName: 'Full Name', email: 'Email', emailPh: 'your@email.com',
+      phone: 'Phone', store: 'Store', allStores: 'All stores', preferredStore: 'Preferred Store', selectStore: 'Select a store',
+      message: 'Message', messagePh: 'How can we help?', send: 'Send Message', sending: 'Sending…',
+      sentTitle: 'Message Sent', sentDesc: "We'll get back to you shortly.",
+      error: 'Something went wrong. Please try again or email us directly.',
+      clubConsent: 'I consent to YAMATO storing my email for club membership communication and marketing. I can unsubscribe at any time.',
+      clubJoin: 'Join the YAMATO Club', clubJoining: 'Joining…',
+      clubSentTitle: "You're on the list!", clubSentDesc: "Welcome to the YAMATO Club waitlist. We'll reach out when we launch.",
+    },
     home: {
       panorama: 'An arcade panorama full of claw, racing, pinball, retro & VR. Come and stay.',
       experience: {
@@ -340,6 +368,24 @@ const translations = {
 
   el: {
     lang: 'ΕΛ',
+    cookies: {
+      text: 'Χρησιμοποιούμε απαραίτητα cookies για τη λειτουργία του YAMATO (σύνδεση, καλάθι). Με τη συγκατάθεσή σου ενδέχεται να χρησιμοποιήσουμε cookies και για τη βελτίωση του site.',
+      accept: 'Αποδοχή', decline: 'Απόρριψη', privacy: 'Πολιτική Απορρήτου',
+    },
+    checkout: {
+      store: 'YAMATO STORE', title: 'Ολοκλήρωση Παραγγελίας', empty: 'Το καλάθι σου είναι άδειο.',
+      shipping: 'Στοιχεία Αποστολής',
+      f_name: 'Ονοματεπώνυμο', f_email: 'Email', f_phone: 'Τηλέφωνο', f_address: 'Διεύθυνση', f_city: 'Πόλη', f_postal: 'Τ.Κ.',
+      payment: 'Τρόπος Πληρωμής',
+      noCard: 'Προς το παρόν δεν υποστηρίζεται πληρωμή με κάρτα. Διαθέσιμοι τρόποι πληρωμής:',
+      codTitle: 'Αντικαταβολή', codDesc: 'Πληρωμή στον διανομέα κατά την παράδοση.',
+      bankTitle: 'Τραπεζική κατάθεση / e-banking', bankDesc: 'Κατάθεση στον λογαριασμό YAMATO με αριθμό παραγγελίας ως αιτιολογία.',
+      submit: 'Καταχώριση Παραγγελίας', processing: 'Επεξεργασία…',
+      note: 'Με την υποβολή θα ανοίξει email προς το YAMATO με τα στοιχεία της παραγγελίας σου.',
+      summary: 'Σύνοψη Παραγγελίας', subtotal: 'Υποσύνολο', codFeeRow: 'Αντικαταβολή', total: 'Σύνολο',
+      emTitle: 'ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ YAMATO', emCustomer: 'Πελάτης', emAddress: 'Διεύθυνση', emPayment: 'Τρόπος πληρωμής',
+      emItems: 'Προϊόντα', emCod: 'Αντικαταβολή', emBank: 'Τραπεζική κατάθεση / e-banking', emOrderSubject: 'Νέα παραγγελία',
+    },
     nav: {
       home: 'Αρχική', experience: 'Η Εμπειρία', gaming: 'YA Gaming',
       social: 'YA Social', collectibles: 'Collectibles / TCG', tcg: 'TCG Lounge',
@@ -361,6 +407,16 @@ const translations = {
       legal: 'Πολιτική Απορρήτου · Όροι Χρήσης · GDPR',
     },
     cta: { findStore: 'Βρες Κατάστημα', joinClub: 'Γίνε Μέλος', viewAll: 'Όλα', browseAll: 'Αναζήτηση' },
+    forms: {
+      name: 'Όνομα', namePh: 'Το όνομά σου', fullName: 'Ονοματεπώνυμο', email: 'Email', emailPh: 'το@email.σου',
+      phone: 'Τηλέφωνο', store: 'Κατάστημα', allStores: 'Όλα τα καταστήματα', preferredStore: 'Προτιμώμενο Κατάστημα', selectStore: 'Επίλεξε κατάστημα',
+      message: 'Μήνυμα', messagePh: 'Πώς μπορούμε να βοηθήσουμε;', send: 'Αποστολή Μηνύματος', sending: 'Αποστολή…',
+      sentTitle: 'Το Μήνυμα Στάλθηκε', sentDesc: 'Θα επικοινωνήσουμε σύντομα.',
+      error: 'Κάτι πήγε στραβά. Δοκίμασε ξανά ή στείλε μας email.',
+      clubConsent: 'Συναινώ να αποθηκεύσει το YAMATO το email μου για επικοινωνία μελών και marketing. Μπορώ να διαγραφώ οποτεδήποτε.',
+      clubJoin: 'Γίνε μέλος του YAMATO Club', clubJoining: 'Εγγραφή…',
+      clubSentTitle: 'Είσαι στη λίστα!', clubSentDesc: 'Καλωσήρθες στη λίστα αναμονής του YAMATO Club. Θα επικοινωνήσουμε με το λανσάρισμα.',
+    },
     home: {
       panorama: 'Ένα arcade πανόραμα γεμάτο claw, racing, pinball, retro & VR. Έλα και μείνε.',
       experience: {
@@ -676,6 +732,24 @@ const translations = {
 
   ja: {
     lang: 'JP',
+    cookies: {
+      text: 'YAMATOの運営（ログイン、カート）に必要なcookieを使用します。ご同意いただける場合、サイト改善のためのcookieも使用することがあります。',
+      accept: '同意する', decline: '拒否', privacy: 'プライバシーポリシー',
+    },
+    checkout: {
+      store: 'YAMATO STORE', title: 'チェックアウト', empty: 'カートは空です。',
+      shipping: '配送情報',
+      f_name: '氏名', f_email: 'メール', f_phone: '電話番号', f_address: '住所', f_city: '市区町村', f_postal: '郵便番号',
+      payment: 'お支払い方法',
+      noCard: '現在、カード決済には対応していません。ご利用可能なお支払い方法:',
+      codTitle: '代金引換', codDesc: '配達時に配達員へお支払いください。',
+      bankTitle: '銀行振込 / ネットバンキング', bankDesc: '注文番号を摘要にしてYAMATOの口座へお振込みください。',
+      submit: '注文を確定', processing: '処理中…',
+      note: '送信すると、注文内容を記載したYAMATO宛のメールが開きます。',
+      summary: '注文内容', subtotal: '小計', codFeeRow: '代金引換', total: '合計',
+      emTitle: 'YAMATO 新規注文', emCustomer: 'お客様', emAddress: '住所', emPayment: 'お支払い方法',
+      emItems: '商品', emCod: '代金引換', emBank: '銀行振込 / ネットバンキング', emOrderSubject: '新規注文',
+    },
     nav: {
       home: 'ホーム', experience: '体験', gaming: 'YAゲーミング',
       social: 'YAソーシャル', collectibles: 'YAコレクタブル', tcg: 'TCGラウンジ',
@@ -697,6 +771,16 @@ const translations = {
       legal: 'プライバシーポリシー · 利用規約 · GDPR',
     },
     cta: { findStore: '店舗を探す', joinClub: 'クラブに参加', viewAll: '全て見る', browseAll: '検索' },
+    forms: {
+      name: 'お名前', namePh: 'お名前', fullName: '氏名', email: 'メール', emailPh: 'your@email.com',
+      phone: '電話番号', store: '店舗', allStores: 'すべての店舗', preferredStore: 'ご希望の店舗', selectStore: '店舗を選択',
+      message: 'メッセージ', messagePh: 'ご用件をどうぞ', send: 'メッセージを送信', sending: '送信中…',
+      sentTitle: '送信しました', sentDesc: '折り返しご連絡します。',
+      error: '問題が発生しました。もう一度お試しください。',
+      clubConsent: 'クラブ会員の連絡およびマーケティングのため、YAMATOがメールを保存することに同意します。いつでも配信停止できます。',
+      clubJoin: 'YAMATOクラブに参加', clubJoining: '登録中…',
+      clubSentTitle: '登録完了！', clubSentDesc: 'YAMATOクラブの順番待ちリストへようこそ。ローンチ時にご連絡します。',
+    },
     home: {
       panorama: 'クレーン、レーシング、ピンボール、レトロ、VRが揃うアーケードパノラマ。来て、とどまれ。',
       experience: {

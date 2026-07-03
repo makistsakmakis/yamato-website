@@ -3,6 +3,7 @@ import { Outlet, Link, NavLink, useLocation } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 import { useCart } from '../context/CartContext'
 import { useAuth } from '../context/AuthContext'
+import CookieConsent from './CookieConsent'
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -276,6 +277,8 @@ export default function Layout() {
           <Link to="/join-club" className="btn-secondary flex-1 py-2 text-xs">{t.cta.joinClub}</Link>
         )}
       </div>
+
+      <CookieConsent />
     </div>
   )
 }

@@ -9,10 +9,10 @@ import { getPrizeShowcase } from '../lib/supabase'
 
 // Experience tab control — structure only (labels + text come from translations)
 const EXPERIENCE_TABS = [
-  { key: 'gameplay',    en: 'GAMEPLAY',    jp: '遊ぶ',   photos: ['/experience/photo3.jpg', '/experience/photo1.jpg'], to: ['/ya-gaming', '/how-to-play'] },
-  { key: 'collections', en: 'COLLECTIONS', jp: '集める', photos: ['/experience/photo5.jpg'], to: ['/events', '/shop?category=TCG'] },
-  { key: 'events',      en: 'EVENTS',      jp: '祝う',   photos: ['/experience/photo2.jpg'], to: ['/events', '/contact'] },
-  { key: 'social',      en: 'SOCIAL PLAY', jp: '社交',   photos: ['/experience/photo4.jpg'], to: ['/ya-social', '/contact'] },
+  { key: 'gameplay',    en: 'YA GAMING',      jp: '遊ぶ',   photos: ['/experience/photo3.jpg', '/experience/photo1.jpg'], to: ['/ya-gaming', '/how-to-play'] },
+  { key: 'collections', en: 'YA COLLECTIONS', jp: '集める', photos: ['/experience/photo5.jpg'], to: ['/events', '/shop?category=TCG'] },
+  { key: 'events',      en: 'YA EVENTS',      jp: '祝う',   photos: ['/experience/photo2.jpg'], to: ['/events', '/contact'] },
+  { key: 'social',      en: 'YA SOCIAL PLAY', jp: '社交',   photos: ['/experience/photo4.jpg'], to: ['/ya-social', '/contact'] },
 ]
 
 function ExperienceTabs() {
@@ -56,7 +56,7 @@ function ExperienceTabs() {
               onClick={() => setActive(i)}
               className="pb-4 flex-none text-left focus:outline-none group"
             >
-              <span className={`block font-black text-lg sm:text-2xl tracking-tight uppercase transition-colors ${active === i ? 'text-white' : 'text-white/40 group-hover:text-white/70'}`}>
+              <span className={`block font-black text-[14px] sm:text-[19px] tracking-tight uppercase transition-colors ${active === i ? 'text-white' : 'text-white/40 group-hover:text-white/70'}`}>
                 {tb.en}
               </span>
               <span className={`block text-lg mt-0.5 transition-colors ${active === i ? 'text-yamato-red' : 'text-white/25 group-hover:text-yamato-red/60'}`}>

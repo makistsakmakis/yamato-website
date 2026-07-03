@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { events } from '../data/events'
 import EventCard from '../components/EventCard'
 import SectionHero from '../components/SectionHero'
@@ -12,6 +13,9 @@ export default function Events() {
     <div>
       <SectionHero subtitle={p.hero.sub} title={p.hero.title} description={p.hero.desc} />
       <section className="py-20 max-w-7xl mx-auto px-4">
+        <div className="mb-10">
+          <Link to="/contact?subject=Book%20an%20Event" className="btn-primary text-sm px-8 py-3.5">{p.bookCta}</Link>
+        </div>
         {featured.length > 0 && (
           <div className="mb-14">
             <p className="section-subtitle mb-4">{p.featured.label}</p>
@@ -39,6 +43,9 @@ export default function Events() {
             <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="btn-secondary text-xs py-2.5 px-6">TikTok</a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="btn-ghost text-xs py-2.5 px-6">YouTube</a>
           </div>
+        </div>
+        <div className="mt-12 text-center">
+          <Link to="/contact?subject=Book%20an%20Event" className="btn-primary text-sm px-10 py-4">{p.bookCta}</Link>
         </div>
       </section>
     </div>

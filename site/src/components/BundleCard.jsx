@@ -16,7 +16,9 @@ export default function BundleCard({ bundle }) {
           </li>
         ))}
       </ul>
-      {bundle.cta_type === 'interest' ? (
+      {bundle.cta_type === 'contact' ? (
+        <Link to="/contact?subject=Game%20Card" className="btn-primary w-full text-center text-xs py-2.5">{bundle.cta_label}</Link>
+      ) : bundle.cta_type === 'interest' ? (
         <Link to="/contact?type=interest" className="btn-primary w-full text-center text-xs py-2.5">{bundle.cta_label}</Link>
       ) : (
         <div className="btn-ghost w-full text-center text-xs py-2.5 cursor-default opacity-80">{bundle.cta_label}</div>

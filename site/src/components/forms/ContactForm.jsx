@@ -1,12 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { stores } from '../../data/stores'
 import { submitContactMessage } from '../../lib/supabase'
+import { useLang } from '../../context/LanguageContext'
 export default function ContactForm({ defaultType = 'contact' }) {
+  const { t } = useLang()
+  const [searchParams] = useSearchParams()
+  const c = t.pages.contact
+  const subjects = c.subjects || []
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
   const [sending, setSending] = useState(false)
   const [form, setForm] = useState({ name:'', email:'', phone:'', store:'', subject:'', message:'', type: defaultType, honeypot:'' })
   const set = k => e => setForm(p => ({ ...p, [k]: e.target.value }))
+
+  // Preselect subject from ?subject= (canonical value)
+  useEffect(() => {
+    const s = searchParams.get('subject')
+    if (s) setForm(p => ({ ...p, subject: s }))
+  }, [searchParams])
   const handleSubmit = async e => {
     e.preventDefault()
     if (form.honeypot) return
@@ -55,8 +67,11 @@ export default function ContactForm({ defaultType = 'contact' }) {
           </select>
         </div>
         <div>
-          <label className="block text-xs text-white/40 tracking-wider uppercase mb-1.5">Subject</label>
-          <input name="subject" value={form.subject} onChange={set('subject')} placeholder="Subject" className="form-input" />
+          <label className="block text-xs text-white/40 tracking-wider uppercase mb-1.5">{c.subjectLabel || 'Subject'}</label>
+          <select name="subject" value={form.subject} onChange={set('subject')} required className="form-input">
+            <option value="">{c.subjectPlaceholder || 'Select a subject'}</option>
+            {subjects.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+          </select>
         </div>
       </div>
       <div>

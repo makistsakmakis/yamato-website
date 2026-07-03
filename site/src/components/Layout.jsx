@@ -57,9 +57,9 @@ export default function Layout() {
   return (
     <div className="min-h-screen bg-yamato-black flex flex-col">
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-yamato-black/95 backdrop-blur border-b border-white/5' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 flex items-center h-16 gap-4">
+        <div className="max-w-7xl mx-auto px-4 flex items-center h-20 gap-4">
           <Link to="/" className="flex items-center flex-none group">
-            <img src="/logo-badge.png" alt="YAMATO" className="h-14 w-auto" />
+            <img src="/logo-badge.png" alt="YAMATO" className="h-[72px] w-auto" />
           </Link>
 
           <nav className="hidden lg:flex flex-1 min-w-0 items-center gap-0.5 overflow-hidden">
@@ -220,7 +220,7 @@ export default function Layout() {
         )}
       </header>
 
-      <main className="flex-1 pt-16">
+      <main className="flex-1 pt-20">
         <Outlet />
       </main>
 

@@ -164,7 +164,7 @@ export default function ShopPage() {
       </div>
 
       {/* Mobile filter bar */}
-      <div className="lg:hidden sticky top-16 z-20 bg-yamato-dark border-b border-white/10 px-4 py-3 flex items-center gap-3">
+      <div className="lg:hidden sticky top-20 z-20 bg-yamato-dark border-b border-white/10 px-4 py-3 flex items-center gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
           <input

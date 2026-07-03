@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 export default function FAQAccordion({ faqs }) {
   const [open, setOpen] = useState(null)
   return (
@@ -16,6 +17,9 @@ export default function FAQAccordion({ faqs }) {
           {open === faq.id && (
             <div className="px-5 py-4 bg-yamato-gray-mid">
               <p className="text-white/60 text-sm leading-relaxed">{faq.answer}</p>
+              {faq.cta && (
+                <Link to={faq.cta.to} className="btn-secondary inline-flex text-xs mt-4 px-5 py-2">{faq.cta.label}</Link>
+              )}
             </div>
           )}
         </div>

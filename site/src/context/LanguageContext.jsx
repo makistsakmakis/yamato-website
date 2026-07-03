@@ -177,6 +177,7 @@ const translations = {
       },
       events: {
         hero: { sub: 'YA Events', title: "What's On.", desc: 'Tournaments, retro nights, family days, championships. The YAMATO event calendar.' },
+        bookCta: 'Book Event',
         featured: { label: 'Featured', title: "Don't Miss" },
         upcoming: { label: 'Upcoming', title: 'All Events' },
         social: { label: 'Social', title: 'Follow the Action', desc: 'Stay updated on all events, drops, and community highlights.' },
@@ -200,6 +201,19 @@ const translations = {
         locations: { label: 'Find Us', title: 'Locations' },
         openInMaps: 'Open in Maps',
         socialTitle: 'Social Media',
+        subjectLabel: 'Subject',
+        subjectPlaceholder: 'Select a subject',
+        subjects: [
+          { value: 'Product Information', label: 'Product Information' },
+          { value: 'Game Card', label: 'Game Card' },
+          { value: 'Give Feedback', label: 'Give Feedback' },
+          { value: 'Support for Existing Client', label: 'Support for Existing Client' },
+          { value: 'Book an Event', label: 'Book an Event' },
+          { value: 'Membership Issue', label: 'Membership Issue' },
+          { value: 'Partnership Opportunity', label: 'Partnership Opportunity' },
+          { value: 'Careers', label: 'Careers' },
+          { value: 'Other', label: 'Other' },
+        ],
       },
       prizes: {
         hero: {
@@ -500,6 +514,7 @@ const translations = {
       },
       events: {
         hero: { sub: 'YA Events', title: 'Τι Γίνεται.', desc: 'Τουρνουά, retro βραδιές, οικογενειακές ημέρες, πρωταθλήματα. Το ημερολόγιο εκδηλώσεων YAMATO.' },
+        bookCta: 'Κλείσε Εκδήλωση',
         featured: { label: 'Προτεινόμενα', title: 'Μην το Χάσεις' },
         upcoming: { label: 'Επερχόμενα', title: 'Όλες οι Εκδηλώσεις' },
         social: { label: 'Social', title: 'Ακολούθησε τη Δράση', desc: 'Μείνε ενήμερος για όλες τις εκδηλώσεις, drops και highlights της κοινότητας.' },
@@ -523,6 +538,19 @@ const translations = {
         locations: { label: 'Βρες μας', title: 'Τοποθεσίες' },
         openInMaps: 'Άνοιγμα στο Maps',
         socialTitle: 'Social Media',
+        subjectLabel: 'Θέμα',
+        subjectPlaceholder: 'Επίλεξε θέμα',
+        subjects: [
+          { value: 'Product Information', label: 'Πληροφορίες Προϊόντος' },
+          { value: 'Game Card', label: 'Κάρτα Παιχνιδιού' },
+          { value: 'Give Feedback', label: 'Σχόλια / Feedback' },
+          { value: 'Support for Existing Client', label: 'Υποστήριξη Υπάρχοντος Πελάτη' },
+          { value: 'Book an Event', label: 'Κράτηση Εκδήλωσης' },
+          { value: 'Membership Issue', label: 'Θέμα Συνδρομής' },
+          { value: 'Partnership Opportunity', label: 'Ευκαιρία Συνεργασίας' },
+          { value: 'Careers', label: 'Καριέρα' },
+          { value: 'Other', label: 'Άλλο' },
+        ],
       },
       prizes: {
         hero: {
@@ -822,6 +850,7 @@ const translations = {
       },
       events: {
         hero: { sub: 'YA Events', title: '開催中のイベント。', desc: 'トーナメント、レトロナイト、ファミリーデー。' },
+        bookCta: 'イベント予約',
         featured: { label: '注目', title: 'お見逃しなく' },
         upcoming: { label: '近日開催', title: 'すべてのイベント' },
         social: { label: 'ソーシャル', title: 'アクションをフォロー', desc: 'すべてのイベント、ドロップをチェック。' },
@@ -845,6 +874,19 @@ const translations = {
         locations: { label: '場所を探す', title: '店舗' },
         openInMaps: 'マップで開く',
         socialTitle: 'ソーシャルメディア',
+        subjectLabel: '件名',
+        subjectPlaceholder: '件名を選択',
+        subjects: [
+          { value: 'Product Information', label: '商品情報' },
+          { value: 'Game Card', label: 'ゲームカード' },
+          { value: 'Give Feedback', label: 'フィードバック' },
+          { value: 'Support for Existing Client', label: '既存のお客様サポート' },
+          { value: 'Book an Event', label: 'イベント予約' },
+          { value: 'Membership Issue', label: 'メンバーシップに関する問題' },
+          { value: 'Partnership Opportunity', label: 'パートナーシップのご相談' },
+          { value: 'Careers', label: '採用' },
+          { value: 'Other', label: 'その他' },
+        ],
       },
       prizes: {
         hero: {

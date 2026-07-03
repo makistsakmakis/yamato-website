@@ -10,6 +10,7 @@ const AuthContext = createContext({
   loading: true,
   authLoading: false,
   signInWithEmail: async () => {},
+  signInWithGoogle: async () => {},
   verifyOtp: async () => {},
   signOut: async () => {},
   refreshProfile: async () => {},
@@ -85,6 +86,20 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
+  const signInWithGoogleFn = useCallback(async (redirectTo) => {
+    if (!supabase) return { error: new Error('Supabase not configured') }
+    setAuthLoading(true)
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: redirectTo || `${window.location.origin}/my-yamato` },
+      })
+      return { error }
+    } finally {
+      setAuthLoading(false)
+    }
+  }, [])
+
   const verifyOtpFn = useCallback(async (email, token) => {
     if (!supabase) return { error: new Error('Supabase not configured') }
     setAuthLoading(true)
@@ -116,6 +131,7 @@ export function AuthProvider({ children }) {
       loading,
       authLoading,
       signInWithEmail: signInWithEmailFn,
+      signInWithGoogle: signInWithGoogleFn,
       verifyOtp: verifyOtpFn,
       signOut: signOutFn,
       refreshProfile,

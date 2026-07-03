@@ -21,6 +21,7 @@
   .card-dark { @apply bg-yamato-gray border border-white/5 rounded-sm overflow-hidden; }
   .form-input { @apply w-full bg-yamato-gray-mid border border-white/10 text-yamato-white placeholder-white/30 px-4 py-3 rounded-sm focus:outline-none focus:border-yamato-red transition-colors; }
   .nav-link { @apply text-[13px] font-semibold tracking-[0.04em] uppercase text-white/70 hover:text-yamato-red transition-colors duration-150 px-1; font-family: 'Saira Condensed', 'Play', system-ui, sans-serif; }
+  .nav-font { font-family: 'Saira Condensed', 'Play', system-ui, sans-serif; }
   .divider-red { @apply w-12 h-0.5 bg-yamato-red; }
 }
 

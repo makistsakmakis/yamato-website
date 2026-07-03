@@ -28,7 +28,13 @@ export default function ContactForm({ defaultType = 'contact' }) {
         type: form.type, name: form.name, email: form.email, phone: form.phone,
         store: form.store, subject: form.subject, message: form.message,
       })
+      // Also open an email draft to YAMATO
+      const mailSubject = encodeURIComponent(`[YAMATO] ${form.subject || 'Contact'}`)
+      const mailBody = encodeURIComponent(
+        `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nStore: ${form.store}\nSubject: ${form.subject}\n\n${form.message}`
+      )
       setSubmitted(true)
+      window.location.href = `mailto:info@germ.gr?subject=${mailSubject}&body=${mailBody}`
     } catch (err) {
       console.error(err)
       setError('Something went wrong. Please try again or email us directly.')

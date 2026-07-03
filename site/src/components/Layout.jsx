@@ -74,7 +74,7 @@ export default function Layout() {
           <div className="hidden lg:flex items-center gap-2 flex-none">
             {utilityItems.map(item => (
               <NavLink key={item.path} to={item.path}
-                className={({isActive}) => `text-[9px] font-black tracking-widest uppercase px-2.5 py-1 border transition-colors whitespace-nowrap ${
+                className={({isActive}) => `nav-font text-[12px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 border transition-colors whitespace-nowrap ${
                   item.path === '/shop'
                     ? isActive ? 'border-yamato-red bg-yamato-red text-white' : 'border-yamato-red/60 text-yamato-red hover:bg-yamato-red hover:text-white'
                     : isActive ? 'border-white/40 text-white bg-white/5' : 'border-white/10 text-white/50 hover:border-white/30 hover:text-white'
@@ -87,7 +87,7 @@ export default function Layout() {
 
             {languages.map(l => (
               <button key={l} onClick={() => setLang(l)}
-                className={`text-[10px] font-bold tracking-widest px-1.5 py-1 transition-colors ${lang === l ? 'text-yamato-red' : 'text-white/30 hover:text-white/70'}`}>
+                className={`nav-font text-[12px] font-bold tracking-widest px-1.5 py-1 transition-colors ${lang === l ? 'text-yamato-red' : 'text-white/30 hover:text-white/70'}`}>
                 {langLabels[l]}
               </button>
             ))}
@@ -139,11 +139,11 @@ export default function Layout() {
               ) : (
                 <>
                   <NavLink to="/sign-in"
-                    className="text-[9px] font-black tracking-widest uppercase px-2.5 py-1 border border-white/20 text-white/50 hover:border-white/40 hover:text-white transition-colors">
+                    className="nav-font text-[12px] font-bold tracking-widest uppercase px-2.5 py-1 border border-white/20 text-white/50 hover:border-white/40 hover:text-white transition-colors whitespace-nowrap">
                     {t.auth?.signIn || 'Sign In'}
                   </NavLink>
                   <NavLink to="/join-club"
-                    className="text-[9px] font-black tracking-widest uppercase px-2.5 py-1 border border-yamato-red/50 text-yamato-red hover:bg-yamato-red hover:text-white transition-colors">
+                    className="nav-font text-[12px] font-bold tracking-widest uppercase px-2.5 py-1 border border-yamato-red/50 text-yamato-red hover:bg-yamato-red hover:text-white transition-colors whitespace-nowrap">
                     {t.cta?.joinClub || 'Join Club'}
                   </NavLink>
                 </>

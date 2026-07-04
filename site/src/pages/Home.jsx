@@ -9,10 +9,10 @@ import { getPrizeShowcase } from '../lib/supabase'
 
 // Experience tab control — structure only (labels + text come from translations)
 const EXPERIENCE_TABS = [
-  { key: 'gameplay',    en: 'YA GAMING',      jp: '遊ぶ',   photos: ['/experience/photo3.jpg', '/experience/photo1.jpg'], to: ['/ya-gaming', '/how-to-play'] },
-  { key: 'collections', en: 'YA COLLECTIONS', jp: '集める', photos: ['/experience/photo5.jpg'], to: ['/events', '/shop?category=TCG'] },
-  { key: 'events',      en: 'YA EVENTS',      jp: '祝う',   photos: ['/experience/photo2.jpg'], to: ['/events', '/contact'] },
-  { key: 'social',      en: 'YA SOCIAL PLAY', jp: '社交',   photos: ['/experience/photo4.jpg'], to: ['/ya-social', '/contact'] },
+  { key: 'gameplay',    en: 'YA GAMING',      jp: '遊ぶ',   photos: ['/experience/ya_gaming_1.jpg', '/experience/ya_gaming_2.jpg'], to: ['/ya-gaming', '/how-to-play'] },
+  { key: 'collections', en: 'YA COLLECTIONS', jp: '集める', photos: ['/experience/ya_collections.jpg'], to: ['/events', '/shop?category=TCG'] },
+  { key: 'events',      en: 'YA EVENTS',      jp: '祝う',   photos: ['/experience/ya_events.jpg'], to: ['/events', '/contact'] },
+  { key: 'social',      en: 'YA SOCIAL PLAY', jp: '社交',   photos: ['/experience/ya_social.jpg'], to: ['/ya-social', '/contact'] },
 ]
 
 function ExperienceTabs() {

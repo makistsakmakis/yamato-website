@@ -153,38 +153,40 @@ const INTRO_CSS = `
     100% { transform: translate(-50%,-50%) scale(0.92); opacity: 0.7; }
   }
   #yamato-intro #hotspot:hover { filter: brightness(1.08); }
-  /* PRESS THE BUTTON — centered from the start, light typeface.
-     After the break, THE fades out and the YAMATO button takes its place. */
+  /* PRESS ANY BUTTON — vertical stack (mobile-friendly), big square condensed type.
+     PRESS on top, ANY over the button, BUTTON below.
+     After the break, ANY fades out and the YAMATO button takes its place. */
   #yamato-intro #pressLabel {
     position: absolute;
-    left: 0; right: 0;
-    top: 45.5%;
-    transform: translateY(-50%);
+    inset: 0;
     z-index: 40;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: #ffffff;
-    font-family: 'Verdana Pro','Verdana',Geneva,sans-serif;
-    font-weight: 300;
-    font-size: clamp(1.5rem, 4.5vw, 4rem);
-    letter-spacing: 0.14em;
+    font-family: 'Bahnschrift SemiCondensed','Bahnschrift','Play','Arial Narrow',Arial,sans-serif;
+    font-stretch: condensed;
+    font-weight: 500;
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    line-height: 1.05;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 3px 12px rgba(0,0,0,0.45);
     opacity: 0;
     pointer-events: none;
     animation: yi-labelIn 0.4s ease-out forwards 0.1s;
   }
   @keyframes yi-labelIn { to { opacity: 1; } }
-  #yamato-intro #pressLabel .side { flex: none; }
-  #yamato-intro #theWord {
-    flex: none;
-    width: min(38vw, 65vh);
-    text-align: center;
-    animation: yi-theOut 0.3s ease-out forwards 1.8s;
+  #yamato-intro #pressLabel .word {
+    position: absolute;
+    left: 0; right: 0;
   }
-  @keyframes yi-theOut { to { opacity: 0; } }
+  #yamato-intro #pressTop { top: 6%; }
+  #yamato-intro #anyWord {
+    top: 45.5%;
+    transform: translateY(-50%);
+    animation: yi-anyOut 0.3s ease-out forwards 1.8s;
+  }
+  @keyframes yi-anyOut { to { opacity: 0; } }
+  #yamato-intro #pressBottom { bottom: 6%; }
   #yamato-intro #pressLabel.hide {
     transition: opacity 0.25s ease-out;
     opacity: 0 !important;
@@ -209,7 +211,7 @@ const INTRO_CSS = `
     #yamato-intro #hotspotWrap { animation: none !important; opacity: 1; pointer-events: auto; }
     #yamato-intro .glowRing    { animation: none !important; }
     #yamato-intro #pressLabel  { animation: none !important; opacity: 1; }
-    #yamato-intro #theWord     { animation: none !important; opacity: 0; }
+    #yamato-intro #anyWord     { animation: none !important; opacity: 0; }
   }
 `
 
@@ -366,9 +368,9 @@ export default function IntroPage({ onEnter }) {
         </div>
 
         <div id="pressLabel" ref={tapLabelRef}>
-          <span className="side">Press</span>
-          <span id="theWord">the</span>
-          <span className="side">Button</span>
+          <span id="pressTop" className="word">Press</span>
+          <span id="anyWord" className="word">Any</span>
+          <span id="pressBottom" className="word">Button</span>
         </div>
         <div id="blackout" ref={blackoutRef} />
       </div>

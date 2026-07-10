@@ -18,8 +18,8 @@ export default function GameModal({ game, onClose }) {
               title={game.title} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen />
           </div>
         ) : (
-          <img src={game.image_url} alt={game.title} className="w-full aspect-video object-contain bg-yamato-gray-mid"
-            onError={e => { e.target.src = 'https://placehold.co/800x450/2a2a2a/E30613?text=YAMATO' }} />
+          <img src={game.image_url} alt={game.title} className="w-full aspect-video object-contain bg-black"
+            onError={e => { e.target.src = 'https://placehold.co/800x450/000000/E30613?text=YAMATO' }} />
         )}
         <div className="p-6">
           <p className="section-subtitle">{game.category}</p>

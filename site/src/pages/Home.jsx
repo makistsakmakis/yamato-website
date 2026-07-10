@@ -45,7 +45,7 @@ function ExperienceTabs() {
     <div>
       {/* Tabs */}
       <div className="relative mb-8">
-        <div className="flex gap-6 sm:gap-10 overflow-x-auto nav-no-scrollbar">
+        <div className="flex gap-12 sm:gap-20 overflow-x-auto nav-no-scrollbar">
           {EXPERIENCE_TABS.map((tb, i) => (
             <button
               key={tb.key}

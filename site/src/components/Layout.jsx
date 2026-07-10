@@ -12,15 +12,14 @@ export default function Layout() {
   const dropdownRef = useRef(null)
   const location = useLocation()
   const { lang, setLang, t, languages } = useLang()
-  const { totalItems, openDrawer } = useCart()
+  useCart() // cart kept mounted but UI hidden for later (e-shop disabled)
   const { user, profile, loading: authLoading, signOut } = useAuth()
 
+  // Hidden for later: YA Social (/ya-social), YA Events (/events), Shop (/shop)
   const navItems = [
     { label: t.nav.home,        short: 'Home',        path: '/' },
-    { label: t.nav.gaming,      short: 'YA Gaming',   path: '/ya-gaming' },
-    { label: t.nav.social,      short: 'YA Social',   path: '/ya-social' },
-    { label: t.nav.events,      short: 'YA Events',   path: '/events' },
-    { label: t.nav.howto,       short: 'The Card',    path: '/how-to-play' },
+    { label: t.nav.howto,       short: 'Card',        path: '/how-to-play' },
+    { label: t.nav.gaming,      short: 'Gaming',      path: '/ya-gaming' },
     { label: t.nav.stores,      short: 'Stores',      path: '/stores' },
     { label: t.nav.club,        short: 'Club',        path: '/yamato-club' },
     { label: t.nav.contact,     short: 'Contact',     path: '/contact' },
@@ -28,7 +27,6 @@ export default function Layout() {
 
   const utilityItems = [
     { label: t.nav.prizes || 'Prizes', path: '/prizes' },
-    { label: t.nav.shop || 'Shop', path: '/shop' },
   ]
 
   useEffect(() => {
@@ -138,29 +136,13 @@ export default function Layout() {
                   )}
                 </div>
               ) : (
-                <>
-                  <NavLink to="/sign-in"
-                    className="nav-font text-[12px] font-bold tracking-widest uppercase px-2.5 py-1 border border-white/20 text-white/50 hover:border-white/40 hover:text-white transition-colors whitespace-nowrap">
-                    {t.auth?.signIn || 'Sign In'}
-                  </NavLink>
-                  <NavLink to="/join-club"
-                    className="nav-font text-[12px] font-bold tracking-widest uppercase px-2.5 py-1 border border-yamato-red/50 text-yamato-red hover:bg-yamato-red hover:text-white transition-colors whitespace-nowrap">
-                    {t.cta?.joinClub || 'Join Club'}
-                  </NavLink>
-                </>
+                <NavLink to="/sign-in"
+                  className="nav-font text-[12px] font-bold tracking-widest uppercase px-2.5 py-1 border border-white/20 text-white/50 hover:border-white/40 hover:text-white transition-colors whitespace-nowrap">
+                  {t.auth?.signIn || 'Sign In'}
+                </NavLink>
               )
             )}
-
-            <button onClick={openDrawer} className="relative p-1 text-white/60 hover:text-white transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-              </svg>
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-yamato-red text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
-                  {totalItems > 9 ? '9+' : totalItems}
-                </span>
-              )}
-            </button>
+            {/* Cart button hidden for later (e-shop disabled) */}
           </div>
 
           <button onClick={() => setMenuOpen(v => !v)} className="lg:hidden flex flex-col gap-1.5 p-2">
@@ -194,28 +176,13 @@ export default function Layout() {
                     {t.auth?.myYamato || 'My YAMATO'}
                   </NavLink>
                 ) : (
-                  <>
-                    <NavLink to="/sign-in" onClick={() => setMenuOpen(false)}
-                      className="text-xs font-bold tracking-widest text-white/50 ml-2">
-                      {t.auth?.signIn || 'Sign In'}
-                    </NavLink>
-                    <NavLink to="/join-club" onClick={() => setMenuOpen(false)}
-                      className="text-xs font-bold tracking-widest text-yamato-red ml-1">
-                      {t.cta?.joinClub || 'Join'}
-                    </NavLink>
-                  </>
+                  <NavLink to="/sign-in" onClick={() => setMenuOpen(false)}
+                    className="text-xs font-bold tracking-widest text-white/50 ml-2">
+                    {t.auth?.signIn || 'Sign In'}
+                  </NavLink>
                 )
               )}
-              <button onClick={() => { setMenuOpen(false); openDrawer() }} className="ml-auto relative p-1 text-white/60 hover:text-white transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                </svg>
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-yamato-red text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
-                    {totalItems > 9 ? '9+' : totalItems}
-                  </span>
-                )}
-              </button>
+              {/* Cart button hidden for later (e-shop disabled) */}
             </div>
           </div>
         )}
@@ -274,7 +241,7 @@ export default function Layout() {
         {user ? (
           <Link to="/my-yamato" className="btn-secondary flex-1 py-2 text-xs">{t.auth?.myYamato || 'My YAMATO'}</Link>
         ) : (
-          <Link to="/join-club" className="btn-secondary flex-1 py-2 text-xs">{t.cta.joinClub}</Link>
+          <Link to="/yamato-club" className="btn-secondary flex-1 py-2 text-xs">{t.cta.joinClub}</Link>
         )}
       </div>
 

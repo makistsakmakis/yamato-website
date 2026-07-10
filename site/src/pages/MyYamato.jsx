@@ -272,9 +272,7 @@ function OrdersSection({ user, d }) {
     <div className="text-center py-10">
       <ShoppingBag className="w-12 h-12 text-white/20 mx-auto mb-3" />
       <p className="text-white/40 text-sm">{d.noOrders}</p>
-      <Link to="/shop" className="btn-primary inline-block mt-4 px-6 py-2.5 text-xs font-bold tracking-widest uppercase">
-        Visit Shop
-      </Link>
+      {/* Shop CTA hidden for later (e-shop disabled) */}
     </div>
   )
 

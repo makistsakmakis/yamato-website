@@ -22,14 +22,14 @@ const translations = {
       emItems: 'Items', emCod: 'Cash on delivery', emBank: 'Bank transfer / e-banking', emOrderSubject: 'New order',
     },
     nav: {
-      home: 'Home', experience: 'The Experience', gaming: 'YA Gaming',
+      home: 'Home', experience: 'The Experience', gaming: 'Gaming',
       social: 'YA Social', collectibles: 'Collectibles / TCG', tcg: 'TCG Lounge',
-      bundles: 'Bundles & Passes', howto: 'The Card', stores: 'Stores',
+      bundles: 'Bundles & Passes', howto: 'Card', stores: 'Stores',
       events: 'YA Events', club: 'YAMATO Club', contact: 'Contact', shop: 'Shop',
       prizes: 'Prizes',
     },
     hero: {
-      badge: 'Now Open in Athens & Nea Erythraia',
+      badge: 'Now Open in Nea Erythraia',
       h1a: 'Where Reality', h1b: 'Becomes', h1c: 'Playable.',
       sub: "Not a store. Not a game room. Something entirely new.",
       tagline: 'Μπες στο παιχνίδι.',
@@ -59,7 +59,7 @@ const translations = {
         title: 'Choose your night',
         tabs: {
           gameplay:    { punch: 'Get in the Game with 100+ Unique Titles', body: "From claw machines and racing cabinets to pinball, retro legends and VR. A swipe with the YAMATO card and you're in.", cta1: 'Check the Zones', cta2: 'Get your Card' },
-          collections: { punch: 'KIWAMI — the collection', body: 'Pokémon TCG, graded cards, designer toys and anime figures in museum-grade display cases. Come for the open, stay for the Vault.', cta1: 'Get in the Action', cta2: 'Buy Online' },
+          collections: { punch: 'KIWAMI — the collection', body: 'Pokémon TCG, graded cards, designer toys and anime figures in museum-grade display cases. Come for the open, stay for the Vault.', cta1: 'Get in the Action', cta2: 'Find a Store' },
           events:      { punch: 'Your space', body: 'Birthdays, corporate events, tournaments. We take care of food, drink, and play — you just show up.', cta1: 'Find Out', cta2: 'Book your Night' },
           social:      { punch: 'Bring the whole Gang!', body: "YAMATO's Social Entertainment & AR zone is where the magic happens for groups. Challenge each other at AR Darts, or gather around the shuffleboard.", cta1: 'Find Out', cta2: 'Book your Night' },
         },
@@ -211,7 +211,7 @@ const translations = {
         social: { label: 'Social', title: 'Follow the Action', desc: 'Stay updated on all events, drops, and community highlights.' },
       },
       club: {
-        hero: { sub: 'YAMATO Club', title: 'Join the Inner Circle.', desc: 'Pre-register for the YAMATO Club. Exclusive benefits, early access, member drops and more. Launching with our first location.' },
+        hero: { sub: 'YAMATO Club', title: 'Membership has its Privileges.', desc: 'Pre-register for the YAMATO Club. Exclusive benefits, early access, member drops and more. Launching with our first location.' },
         benefits: { label: 'Member Benefits', title: 'What You Get' },
         benefitItems: [
           { title: 'Early Access', desc: 'Get first access to new game launches, drops, and exclusive events before the general public.' },
@@ -224,7 +224,7 @@ const translations = {
         form: { label: 'Pre-Registration', title: 'Claim Your Spot', sub: 'Free to join. No card required. GDPR compliant.' },
       },
       contact: {
-        hero: { sub: 'Contact', title: 'Get in Touch.', desc: 'Questions, group bookings, press inquiries, or just want to say hi.' },
+        hero: { sub: 'Contact', title: 'Get in Touch.', desc: "Reach out — we're always here to help." },
         form: { label: 'Send a Message', title: 'Contact Form' },
         locations: { label: 'Find Us', title: 'Locations' },
         openInMaps: 'Open in Maps',
@@ -387,14 +387,14 @@ const translations = {
       emItems: 'Προϊόντα', emCod: 'Αντικαταβολή', emBank: 'Τραπεζική κατάθεση / e-banking', emOrderSubject: 'Νέα παραγγελία',
     },
     nav: {
-      home: 'Αρχική', experience: 'Η Εμπειρία', gaming: 'YA Gaming',
+      home: 'Αρχική', experience: 'Η Εμπειρία', gaming: 'Gaming',
       social: 'YA Social', collectibles: 'Collectibles / TCG', tcg: 'TCG Lounge',
-      bundles: 'Πακέτα & Πάσα', howto: 'The Card', stores: 'Καταστήματα',
+      bundles: 'Πακέτα & Πάσα', howto: 'Card', stores: 'Καταστήματα',
       events: 'YA Events', club: 'YAMATO Club', contact: 'Επικοινωνία', shop: 'Shop',
       prizes: 'Prizes',
     },
     hero: {
-      badge: 'Ανοιχτά στην Αθήνα & Νέα Ερυθραία',
+      badge: 'Ανοιχτά στη Νέα Ερυθραία',
       h1a: 'Η Πραγματικότητα', h1b: 'Γίνεται', h1c: 'Παιχνίδι.',
       sub: 'Ο πρώτος premium αστικός προορισμός παιχνιδιού στην Ελλάδα. 100+ games, VR, TCG, social gaming και collectibles.',
       tagline: 'Μπες στο παιχνίδι.',
@@ -424,7 +424,7 @@ const translations = {
         title: 'Διάλεξε τη βραδιά σου',
         tabs: {
           gameplay:    { punch: 'Μπες στο Παιχνίδι με 100+ Μοναδικούς Τίτλους', body: 'Από claw machines και racing cabinets μέχρι pinball, retro θρύλους και VR. Ένα swipe με την κάρτα YAMATO και είσαι μέσα.', cta1: 'Δες τις Ζώνες', cta2: 'Πάρε την Κάρτα' },
-          collections: { punch: 'KIWAMI — η συλλογή', body: 'Pokémon TCG, graded κάρτες, designer toys και anime φιγούρες σε βιτρίνες μουσειακού επιπέδου. Έλα για το open, μείνε για το Vault.', cta1: 'Μπες στη Δράση', cta2: 'Αγόρασε Online' },
+          collections: { punch: 'KIWAMI — η συλλογή', body: 'Pokémon TCG, graded κάρτες, designer toys και anime φιγούρες σε βιτρίνες μουσειακού επιπέδου. Έλα για το open, μείνε για το Vault.', cta1: 'Μπες στη Δράση', cta2: 'Βρες Κατάστημα' },
           events:      { punch: 'Ο χώρος σου', body: 'Γενέθλια, εταιρικά events, τουρνουά. Εμείς αναλαμβάνουμε φαγητό, ποτό και παιχνίδι — εσύ απλά έλα.', cta1: 'Μάθε Περισσότερα', cta2: 'Κλείσε τη Βραδιά σου' },
           social:      { punch: 'Φέρε όλη την Παρέα!', body: 'Η ζώνη Social Entertainment & AR του YAMATO είναι εκεί που γίνεται η μαγεία για ομάδες. Προκαλέστε ο ένας τον άλλον στο AR Darts ή μαζευτείτε γύρω από το shuffleboard.', cta1: 'Μάθε Περισσότερα', cta2: 'Κλείσε τη Βραδιά σου' },
         },
@@ -576,7 +576,7 @@ const translations = {
         social: { label: 'Social', title: 'Ακολούθησε τη Δράση', desc: 'Μείνε ενήμερος για όλες τις εκδηλώσεις, drops και highlights της κοινότητας.' },
       },
       club: {
-        hero: { sub: 'YAMATO Club', title: 'Μπες στον Εσωτερικό Κύκλο.', desc: 'Προ-εγγραφή για το YAMATO Club. Αποκλειστικά οφέλη, πρώτη πρόσβαση, member drops και πολλά άλλα. Λανσάρισμα με την πρώτη μας τοποθεσία.' },
+        hero: { sub: 'YAMATO Club', title: 'Membership has its Privileges.', desc: 'Προ-εγγραφή για το YAMATO Club. Αποκλειστικά οφέλη, πρώτη πρόσβαση, member drops και πολλά άλλα. Λανσάρισμα με την πρώτη μας τοποθεσία.' },
         benefits: { label: 'Οφέλη Μελών', title: 'Τι Κερδίζεις' },
         benefitItems: [
           { title: 'Πρώτη Πρόσβαση', desc: 'Πρώτος σε νέα games, drops και αποκλειστικές εκδηλώσεις πριν το κοινό.' },
@@ -589,7 +589,7 @@ const translations = {
         form: { label: 'Προ-Εγγραφή', title: 'Κράτα τη Θέση σου', sub: 'Δωρεάν εγγραφή. Δεν απαιτείται κάρτα. GDPR compliant.' },
       },
       contact: {
-        hero: { sub: 'Επικοινωνία', title: 'Επικοινώνησε μαζί μας.', desc: 'Ερωτήσεις, ομαδικές κρατήσεις, press inquiries ή απλά θέλεις να πεις γεια.' },
+        hero: { sub: 'Επικοινωνία', title: 'Επικοινώνησε μαζί μας.', desc: 'Μίλησέ μας — είμαστε πάντα εδώ για να βοηθήσουμε.' },
         form: { label: 'Στείλε Μήνυμα', title: 'Φόρμα Επικοινωνίας' },
         locations: { label: 'Βρες μας', title: 'Τοποθεσίες' },
         openInMaps: 'Άνοιγμα στο Maps',
@@ -751,14 +751,14 @@ const translations = {
       emItems: '商品', emCod: '代金引換', emBank: '銀行振込 / ネットバンキング', emOrderSubject: '新規注文',
     },
     nav: {
-      home: 'ホーム', experience: '体験', gaming: 'YAゲーミング',
+      home: 'ホーム', experience: '体験', gaming: 'ゲーミング',
       social: 'YAソーシャル', collectibles: 'YAコレクタブル', tcg: 'TCGラウンジ',
-      bundles: 'バンドル＆パス', howto: 'The Card', stores: '店舗',
+      bundles: 'バンドル＆パス', howto: 'Card', stores: '店舗',
       events: 'YA Events', club: 'YAMATOクラブ', contact: 'お問い合わせ', shop: 'ショップ',
       prizes: 'プライズ',
     },
     hero: {
-      badge: 'アテネ＆ネア・エリスレアにオープン',
+      badge: 'ネア・エリスレアにオープン',
       h1a: '現実が', h1b: 'ゲームに', h1c: 'なる場所。',
       sub: 'ギリシャ初のプレミアム・アーバン・プレイ施設。100以上のゲーム、VR、TCG、ソーシャルゲーミングとコレクタブル。',
       tagline: 'ゲームに入れ。',
@@ -788,7 +788,7 @@ const translations = {
         title: '夜を選べ',
         tabs: {
           gameplay:    { punch: '100種類以上のユニークなタイトルでゲームに参加', body: 'クレーンマシンやレーシング筐体からピンボール、レトロの名作、VRまで。YAMATOカードをかざせば準備完了。', cta1: 'ゾーンを見る', cta2: 'カードを手に入れる' },
-          collections: { punch: 'KIWAMI — ザ・コレクション', body: 'ポケモンTCG、鑑定済みカード、デザイナートイ、アニメフィギュアを美術館級のディスプレイケースで。オープンに来て、Vaultにとどまれ。', cta1: 'アクションに参加', cta2: 'オンラインで購入' },
+          collections: { punch: 'KIWAMI — ザ・コレクション', body: 'ポケモンTCG、鑑定済みカード、デザイナートイ、アニメフィギュアを美術館級のディスプレイケースで。オープンに来て、Vaultにとどまれ。', cta1: 'アクションに参加', cta2: '店舗を探す' },
           events:      { punch: 'あなたの空間', body: '誕生日、コーポレートイベント、トーナメント。食事、ドリンク、遊びは私たちにお任せ — あなたは来るだけ。', cta1: '詳しく見る', cta2: '予約する' },
           social:      { punch: '仲間を全員連れてこい！', body: 'YAMATOのソーシャル&ARゾーンは、グループにとって魔法が生まれる場所。ARダーツで勝負したり、シャッフルボードを囲んだり。', cta1: '詳しく見る', cta2: '予約する' },
         },
@@ -940,7 +940,7 @@ const translations = {
         social: { label: 'ソーシャル', title: 'アクションをフォロー', desc: 'すべてのイベント、ドロップをチェック。' },
       },
       club: {
-        hero: { sub: 'YAMATOクラブ', title: 'インナーサークルに参加。', desc: 'YAMATOクラブへの事前登録。特別特典、早期アクセス、メンバードロップなど。' },
+        hero: { sub: 'YAMATOクラブ', title: 'Membership has its Privileges.', desc: 'YAMATOクラブへの事前登録。特別特典、早期アクセス、メンバードロップなど。' },
         benefits: { label: 'メンバー特典', title: '得られるもの' },
         benefitItems: [
           { title: '早期アクセス', desc: '新しいゲーム、ドロップ、限定イベントへの最初のアクセス。' },
@@ -953,7 +953,7 @@ const translations = {
         form: { label: '事前登録', title: 'スポットを確保', sub: '無料。カード不要。GDPR準拠。' },
       },
       contact: {
-        hero: { sub: 'お問い合わせ', title: 'ご連絡ください。', desc: '質問、グループ予約、またはただご挨拶。' },
+        hero: { sub: 'お問い合わせ', title: 'ご連絡ください。', desc: 'お気軽にご連絡ください。いつでもサポートいたします。' },
         form: { label: 'メッセージを送る', title: 'お問い合わせフォーム' },
         locations: { label: '場所を探す', title: '店舗' },
         openInMaps: 'マップで開く',

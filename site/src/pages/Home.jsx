@@ -1,18 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { getFeaturedEvents } from '../data/events'
-import EventCard from '../components/EventCard'
 import FAQAccordion from '../components/FAQAccordion'
 import { faqs } from '../data/faqs'
 import { useLang } from '../context/LanguageContext'
 import { getPrizeShowcase } from '../lib/supabase'
 
 // Experience tab control — structure only (labels + text come from translations)
+// Hidden for later: EVENTS + SOCIAL PLAY tabs (pages hidden). "YA" prefix removed from headers.
 const EXPERIENCE_TABS = [
-  { key: 'gameplay',    en: 'YA GAMING',      jp: '遊ぶ',   photos: ['/experience/ya_gaming_1.jpg', '/experience/ya_gaming_2.jpg'], to: ['/ya-gaming', '/how-to-play'] },
-  { key: 'collections', en: 'YA COLLECTIONS', jp: '集める', photos: ['/experience/ya_collections.jpg'], to: ['/events', '/shop?category=TCG'] },
-  { key: 'events',      en: 'YA EVENTS',      jp: '祝う',   photos: ['/experience/ya_events.jpg'], to: ['/events', '/contact'] },
-  { key: 'social',      en: 'YA SOCIAL PLAY', jp: '社交',   photos: ['/experience/ya_social.jpg'], to: ['/ya-social', '/contact'] },
+  { key: 'gameplay',    en: 'GAMING',      jp: '遊ぶ',   photos: ['/experience/ya_gaming_1.jpg', '/experience/ya_gaming_2.jpg'], to: ['/ya-gaming', '/how-to-play'] },
+  { key: 'collections', en: 'COLLECTIONS', jp: '集める', photos: ['/experience/ya_collections.jpg'], to: ['/prizes', '/stores'] },
 ]
 
 function ExperienceTabs() {
@@ -160,7 +157,6 @@ function StatItem({ value, label, delay }) {
 }
 
 export default function Home() {
-  const featuredEvents = getFeaturedEvents()
   const [featuredPrizes, setFeaturedPrizes] = useState([])
   const { t } = useLang()
   const h = t.home
@@ -185,7 +181,7 @@ export default function Home() {
             <span className="text-yamato-red text-xs font-bold tracking-widest uppercase">{t.hero.badge}</span>
           </div>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight text-white leading-[0.95] mb-6 fade-in" style={{ animationDelay: '150ms' }}>
-            PLAY <span className="text-yamato-red">LIKE IN</span> TOKYO
+            WHERE <span className="text-yamato-red">PLAY</span> LIVES
           </h1>
           <p className="text-white/50 text-xl md:text-2xl max-w-2xl mx-auto mb-2 fade-in" style={{ animationDelay: '280ms' }}>
             大和へようこそ　·　59 El. Venizelou, N. Erythraia
@@ -273,23 +269,7 @@ export default function Home() {
         </section>
       )}
 
-      {/* EVENTS */}
-      {featuredEvents.length > 0 && (
-        <section className="py-20 bg-yamato-dark border-y border-white/5 fade-in">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-end justify-between mb-10">
-              <div>
-                <p className="section-subtitle">{h.events.sub}</p>
-                <h2 className="section-title text-white">{h.events.title}</h2>
-              </div>
-              <Link to="/events" className="btn-secondary text-xs py-2 px-4 hidden sm:flex">{h.events.cta}</Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {featuredEvents.map(e => <EventCard key={e.id} event={e} />)}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* EVENTS section hidden for later (YA Events page disabled) */}
 
       {/* BUNDLES CTA */}
       <section className="py-20 max-w-7xl mx-auto px-4 fade-in">

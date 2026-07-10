@@ -53,7 +53,7 @@ export const faqs = [
       el:"Ναι! Έχουμε Pokémon, Yu-Gi-Oh!, One Piece και άλλα, και διοργανώνουμε τακτικά τουρνουά.",
       ja:"はい！ポケモン、遊戯王、ワンピースなどを取り扱い、定期的にトーナメントも開催しています。",
     },
-    cta:{ to:"/shop?category=TCG", label:{ en:"Shop TCG", el:"Αγορά TCG", ja:"TCGを見る" } },
+    // CTA to e-shop hidden for later: cta:{ to:"/shop?category=TCG", label:{ en:"Shop TCG", el:"Αγορά TCG", ja:"TCGを見る" } },
   },
   {
     id:"7", category:"passes", order:7,

@@ -22,11 +22,11 @@ const INTRO_CSS = `
     position: absolute; inset: 0;
     background: #83071f;
     z-index: 5;
-    animation: yi-flatHold 1.0s ease-out forwards, yi-flatFade 0.5s ease-in forwards 1.5s;
+    animation: yi-flatHold 1.5s ease-out forwards, yi-flatFade 0.5s ease-in forwards 1.9s;
   }
   @keyframes yi-flatHold {
     0%   { filter: brightness(1); }
-    78%  { filter: brightness(1); }
+    85%  { filter: brightness(1); }
     100% { filter: brightness(1.25); }
   }
   @keyframes yi-flatFade {
@@ -36,11 +36,20 @@ const INTRO_CSS = `
   #yamato-intro #cracks {
     position: absolute; inset: 0;
     z-index: 6;
-    opacity: 0;
-    animation: yi-cracksIn 0.45s ease-out forwards 0.65s, yi-cracksOut 0.3s ease-in forwards 1.5s;
+    animation: yi-cracksOut 0.3s ease-in forwards 1.9s;
   }
-  @keyframes yi-cracksIn  { to { opacity: 1; } }
   @keyframes yi-cracksOut { to { opacity: 0; } }
+  /* Crack builds in 3 beats: krak – krak – krak */
+  #yamato-intro #cracks .g1,
+  #yamato-intro #cracks .g2,
+  #yamato-intro #cracks .g3 { opacity: 0; }
+  #yamato-intro #cracks .g1 { animation: yi-crackSnap 0.1s ease-out forwards 0.45s; }
+  #yamato-intro #cracks .g2 { animation: yi-crackSnap 0.1s ease-out forwards 0.95s; }
+  #yamato-intro #cracks .g3 { animation: yi-crackSnap 0.1s ease-out forwards 1.45s; }
+  @keyframes yi-crackSnap {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
   #yamato-intro #cracks path {
     fill: none;
     stroke: #2c0608;
@@ -59,7 +68,7 @@ const INTRO_CSS = `
     z-index: 30;
     opacity: 0;
     pointer-events: none;
-    animation: yi-flashPulse 0.35s ease-out forwards 1.45s;
+    animation: yi-flashPulse 0.35s ease-out forwards 1.85s;
   }
   @keyframes yi-flashPulse {
     0%   { opacity: 0; }
@@ -93,7 +102,7 @@ const INTRO_CSS = `
     align-items: center;
     justify-content: center;
     opacity: 0;
-    animation: yi-finalIn 0.6s cubic-bezier(.2,.8,.2,1.1) forwards 1.32s;
+    animation: yi-finalIn 0.6s cubic-bezier(.2,.8,.2,1.1) forwards 1.75s;
   }
   @keyframes yi-finalIn {
     0%   { opacity: 0; transform: scale(0.85); filter: brightness(2.2) blur(2px); }
@@ -114,7 +123,7 @@ const INTRO_CSS = `
     transform: translate(-50%,-50%);
     opacity: 0;
     pointer-events: none;
-    animation: yi-hotspotIn 0.4s ease-out forwards 1.85s;
+    animation: yi-hotspotIn 0.4s ease-out forwards 2.3s;
   }
   #yamato-intro #hotspotWrap.active { pointer-events: auto; }
   @keyframes yi-hotspotIn { to { opacity: 1; } }
@@ -144,35 +153,39 @@ const INTRO_CSS = `
     100% { transform: translate(-50%,-50%) scale(0.92); opacity: 0.7; }
   }
   #yamato-intro #hotspot:hover { filter: brightness(1.08); }
-  #yamato-intro #tapLabel {
+  /* PRESS THE BUTTON — centered from the start, light typeface.
+     After the break, THE fades out and the YAMATO button takes its place. */
+  #yamato-intro #pressLabel {
     position: absolute;
-    left: 50%; bottom: 4%;
-    transform: translateX(-50%);
+    left: 0; right: 0;
+    top: 45.5%;
+    transform: translateY(-50%);
     z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #ffffff;
-    font-family: 'Verdana Pro Black','Verdana Pro','Verdana',Geneva,sans-serif;
-    font-weight: 900;
-    font-size: 5.2rem;
-    letter-spacing: 0.01em;
+    font-family: 'Verdana Pro','Verdana',Geneva,sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 4.5vw, 4rem);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    text-align: center;
-    width: 94%;
     line-height: 1.05;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.45);
     opacity: 0;
-    text-shadow:
-      -1px 2px 0 #000,
-      -2px 4px 0 #000,
-      -3px 6px 0 #000,
-      -4px 8px 10px rgba(0,0,0,0.45);
-    animation: yi-labelIn 0.5s ease-out forwards 2.1s;
+    pointer-events: none;
+    animation: yi-labelIn 0.4s ease-out forwards 0.1s;
   }
-  @keyframes yi-labelIn {
-    to { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+  @keyframes yi-labelIn { to { opacity: 1; } }
+  #yamato-intro #pressLabel .side { flex: none; }
+  #yamato-intro #theWord {
+    flex: none;
+    width: min(38vw, 65vh);
+    text-align: center;
+    animation: yi-theOut 0.3s ease-out forwards 1.8s;
   }
-  @media (max-width: 640px) {
-    #yamato-intro #tapLabel { font-size: 2.4rem; bottom: 3%; }
-  }
-  #yamato-intro #tapLabel.hide {
+  @keyframes yi-theOut { to { opacity: 0; } }
+  #yamato-intro #pressLabel.hide {
     transition: opacity 0.25s ease-out;
     opacity: 0 !important;
   }
@@ -189,13 +202,14 @@ const INTRO_CSS = `
   }
   @media (prefers-reduced-motion: reduce) {
     #yamato-intro #flatRed  { animation: none !important; opacity: 0; visibility: hidden; }
-    #yamato-intro #cracks   { animation: none !important; }
+    #yamato-intro #cracks   { animation: none !important; opacity: 0; }
     #yamato-intro #flash    { animation: none !important; }
     #yamato-intro .yi-shard { animation: none !important; }
     #yamato-intro #finalWrap   { animation: none !important; opacity: 1; transform: none; filter: none; }
     #yamato-intro #hotspotWrap { animation: none !important; opacity: 1; pointer-events: auto; }
     #yamato-intro .glowRing    { animation: none !important; }
-    #yamato-intro #tapLabel    { animation: none !important; opacity: 1; }
+    #yamato-intro #pressLabel  { animation: none !important; opacity: 1; }
+    #yamato-intro #theWord     { animation: none !important; opacity: 0; }
   }
 `
 
@@ -240,7 +254,7 @@ export default function IntroPage({ onEnter }) {
         const w = 14 + Math.random() * 46
         const h = 14 + Math.random() * 46
         const dur = 0.75 + Math.random() * 0.6
-        const delay = 1.18 + Math.random() * 0.14
+        const delay = 1.6 + Math.random() * 0.14
         const clip = shapes[Math.floor(Math.random() * shapes.length)]
         const dark = Math.random() > 0.4
         const c1 = dark ? '#4a0a0f' : '#d9384a'
@@ -262,7 +276,7 @@ export default function IntroPage({ onEnter }) {
     }
 
     // Activate hotspot after animation completes
-    const activateDelay = reduceMotion ? 0 : 1900
+    const activateDelay = reduceMotion ? 0 : 2400
     const timer = setTimeout(() => {
       if (hotspotWrapRef.current) hotspotWrapRef.current.classList.add('active')
     }, activateDelay)
@@ -292,34 +306,43 @@ export default function IntroPage({ onEnter }) {
         <div id="shardLayer" ref={shardLayerRef} />
 
         <svg id="cracks" viewBox="0 0 1435 805" preserveAspectRatio="xMidYMid slice">
-          <path className="glow" d="M717,360 L640,210 L590,90" />
-          <path d="M717,360 L640,210 L590,90" />
-          <path className="glow" d="M717,360 L820,150 L880,40" />
-          <path d="M717,360 L820,150 L880,40" />
-          <path className="glow" d="M717,360 L520,300 L380,250 L260,260" />
-          <path d="M717,360 L520,300 L380,250 L260,260" />
-          <path className="glow" d="M717,360 L900,330 L1080,300 L1220,330" />
-          <path d="M717,360 L900,330 L1080,300 L1220,330" />
-          <path className="glow" d="M717,360 L640,520 L560,650 L500,760" />
-          <path d="M717,360 L640,520 L560,650 L500,760" />
-          <path className="glow" d="M717,360 L820,540 L900,680 L960,780" />
-          <path d="M717,360 L820,540 L900,680 L960,780" />
-          <path className="glow" d="M717,360 L460,430 L300,470" />
-          <path d="M717,360 L460,430 L300,470" />
-          <path className="glow" d="M717,360 L980,420 L1150,480" />
-          <path d="M717,360 L980,420 L1150,480" />
-          <path className="glow" d="M640,210 L560,130" />
-          <path d="M640,210 L560,130" />
-          <path className="glow" d="M820,150 L920,200" />
-          <path d="M820,150 L920,200" />
-          <path className="glow" d="M520,300 L420,180" />
-          <path d="M520,300 L420,180" />
-          <path className="glow" d="M900,330 L1000,250" />
-          <path d="M900,330 L1000,250" />
-          <path className="glow" d="M640,520 L700,640" />
-          <path d="M640,520 L700,640" />
-          <path className="glow" d="M820,540 L760,660" />
-          <path d="M820,540 L760,660" />
+          {/* krak 1 */}
+          <g className="g1">
+            <path className="glow" d="M717,360 L640,210 L590,90" />
+            <path d="M717,360 L640,210 L590,90" />
+            <path className="glow" d="M717,360 L820,150 L880,40" />
+            <path d="M717,360 L820,150 L880,40" />
+          </g>
+          {/* krak 2 */}
+          <g className="g2">
+            <path className="glow" d="M717,360 L520,300 L380,250 L260,260" />
+            <path d="M717,360 L520,300 L380,250 L260,260" />
+            <path className="glow" d="M717,360 L900,330 L1080,300 L1220,330" />
+            <path d="M717,360 L900,330 L1080,300 L1220,330" />
+            <path className="glow" d="M640,210 L560,130" />
+            <path d="M640,210 L560,130" />
+            <path className="glow" d="M820,150 L920,200" />
+            <path d="M820,150 L920,200" />
+          </g>
+          {/* krak 3 */}
+          <g className="g3">
+            <path className="glow" d="M717,360 L640,520 L560,650 L500,760" />
+            <path d="M717,360 L640,520 L560,650 L500,760" />
+            <path className="glow" d="M717,360 L820,540 L900,680 L960,780" />
+            <path d="M717,360 L820,540 L900,680 L960,780" />
+            <path className="glow" d="M717,360 L460,430 L300,470" />
+            <path d="M717,360 L460,430 L300,470" />
+            <path className="glow" d="M717,360 L980,420 L1150,480" />
+            <path d="M717,360 L980,420 L1150,480" />
+            <path className="glow" d="M520,300 L420,180" />
+            <path d="M520,300 L420,180" />
+            <path className="glow" d="M900,330 L1000,250" />
+            <path d="M900,330 L1000,250" />
+            <path className="glow" d="M640,520 L700,640" />
+            <path d="M640,520 L700,640" />
+            <path className="glow" d="M820,540 L760,660" />
+            <path d="M820,540 L760,660" />
+          </g>
         </svg>
 
         <div id="flash" />
@@ -342,7 +365,11 @@ export default function IntroPage({ onEnter }) {
           />
         </div>
 
-        <div id="tapLabel" ref={tapLabelRef}>Press the button...</div>
+        <div id="pressLabel" ref={tapLabelRef}>
+          <span className="side">Press</span>
+          <span id="theWord">the</span>
+          <span className="side">Button</span>
+        </div>
         <div id="blackout" ref={blackoutRef} />
       </div>
     </div>

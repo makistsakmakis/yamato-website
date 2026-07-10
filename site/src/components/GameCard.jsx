@@ -3,10 +3,11 @@ export default function GameCard({ game, onClick }) {
   return (
     <div onClick={() => onClick && onClick(game)}
       className="card-dark group cursor-pointer hover:border-yamato-red/30 transition-all duration-200 hover:-translate-y-1">
+      {/* Uniform dark grey backdrop behind every game image (like Cyberpunk 2077: Turf Wars) */}
       <div className="relative aspect-[4/3] overflow-hidden bg-yamato-gray-mid">
         <img src={game.image_url || '/placeholder.jpg'} alt={game.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          onError={e => { e.target.src = 'https://placehold.co/400x300/1a1a1a/E30613?text=YAMATO' }} />
+          className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+          onError={e => { e.target.src = 'https://placehold.co/400x300/2a2a2a/E30613?text=YAMATO' }} />
         {game.featured && (
           <div className="absolute top-2 left-2 bg-yamato-red text-white text-[10px] font-bold tracking-widest uppercase px-2 py-0.5">Featured</div>
         )}

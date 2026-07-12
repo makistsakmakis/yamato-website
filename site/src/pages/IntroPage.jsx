@@ -155,12 +155,10 @@ const INTRO_CSS = `
   #yamato-intro #hotspot:hover { filter: brightness(1.08); }
   /* PRESS ANY BUTTON — vertical stack (mobile-friendly), big square condensed type.
      PRESS on top, ANY over the button, BUTTON below.
-     After the break, ANY fades out and the YAMATO button takes its place. */
-  #yamato-intro #pressLabel {
-    position: absolute;
-    inset: 0;
-    /* no z-index here: each word manages its own layer so the crack
-       can run over ANY (6 < cracks 7) but under PRESS/BUTTON (40) */
+     ANY lives in its own layer (z 6) so the cracks (z 7) run over it,
+     while PRESS/BUTTON sit above everything (z 40). */
+  #yamato-intro #pressLabel,
+  #yamato-intro #anyWord {
     color: #ffffff;
     font-family: 'Bahnschrift SemiCondensed','Bahnschrift','Play','Arial Narrow',Arial,sans-serif;
     font-stretch: condensed;
@@ -174,27 +172,35 @@ const INTRO_CSS = `
       -1px 2px 0 #000,
       -2px 4px 0 #000,
       -3px 6px 0 #000,
-      -4px 8px 12px rgba(0,0,0,0.5);
+      -4px 8px 0 #000,
+      -5px 10px 16px rgba(0,0,0,0.65);
     opacity: 0;
     pointer-events: none;
+  }
+  #yamato-intro #pressLabel {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
     animation: yi-labelIn 0.4s ease-out forwards 0.1s;
   }
   @keyframes yi-labelIn { to { opacity: 1; } }
   #yamato-intro #pressLabel .word {
     position: absolute;
     left: 0; right: 0;
-    z-index: 40;
   }
   #yamato-intro #pressTop { top: 6%; }
+  #yamato-intro #pressBottom { bottom: 6%; }
   #yamato-intro #anyWord {
+    position: absolute;
+    left: 0; right: 0;
     top: 45.5%;
     transform: translateY(-50%);
-    z-index: 6; /* under the cracks: the krak runs across ANY too */
-    animation: yi-anyOut 0.3s ease-out forwards 2.3s;
+    z-index: 6; /* under the cracks (7): the krak runs across ANY too */
+    animation: yi-labelIn 0.4s ease-out forwards 0.1s, yi-anyOut 0.3s ease-out forwards 2.3s;
   }
   @keyframes yi-anyOut { to { opacity: 0; } }
-  #yamato-intro #pressBottom { bottom: 6%; }
-  #yamato-intro #pressLabel.hide {
+  #yamato-intro #pressLabel.hide,
+  #yamato-intro #anyWord.hide {
     transition: opacity 0.25s ease-out;
     opacity: 0 !important;
   }
@@ -301,6 +307,7 @@ export default function IntroPage({ onEnter }) {
     leavingRef.current = true
     if (hotspotWrapRef.current) hotspotWrapRef.current.classList.remove('active')
     if (tapLabelRef.current) tapLabelRef.current.classList.add('hide')
+    document.getElementById('anyWord')?.classList.add('hide')
     if (blackoutRef.current) blackoutRef.current.classList.add('go')
     setTimeout(() => onEnter(), 1150)
   }
@@ -313,6 +320,9 @@ export default function IntroPage({ onEnter }) {
         </div>
 
         <div id="shardLayer" ref={shardLayerRef} />
+
+        {/* ANY sits outside #pressLabel so the cracks (z 7) can run over it (z 6) */}
+        <span id="anyWord">Any</span>
 
         <svg id="cracks" viewBox="0 0 1435 805" preserveAspectRatio="xMidYMid slice">
           {/* krak 1 */}
@@ -376,7 +386,6 @@ export default function IntroPage({ onEnter }) {
 
         <div id="pressLabel" ref={tapLabelRef}>
           <span id="pressTop" className="word">Press</span>
-          <span id="anyWord" className="word">Any</span>
           <span id="pressBottom" className="word">Button</span>
         </div>
         <div id="blackout" ref={blackoutRef} />

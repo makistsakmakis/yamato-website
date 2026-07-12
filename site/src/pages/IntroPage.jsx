@@ -22,7 +22,7 @@ const INTRO_CSS = `
     position: absolute; inset: 0;
     background: #83071f;
     z-index: 5;
-    animation: yi-flatHold 1.5s ease-out forwards, yi-flatFade 0.5s ease-in forwards 1.9s;
+    animation: yi-flatHold 2.0s ease-out forwards, yi-flatFade 0.5s ease-in forwards 2.4s;
   }
   @keyframes yi-flatHold {
     0%   { filter: brightness(1); }
@@ -35,17 +35,17 @@ const INTRO_CSS = `
   }
   #yamato-intro #cracks {
     position: absolute; inset: 0;
-    z-index: 6;
-    animation: yi-cracksOut 0.3s ease-in forwards 1.9s;
+    z-index: 7; /* above ANY (6) so the crack runs over it — PRESS/BUTTON stay above (40) */
+    animation: yi-cracksOut 0.3s ease-in forwards 2.4s;
   }
   @keyframes yi-cracksOut { to { opacity: 0; } }
-  /* Crack builds in 3 beats: krak – krak – krak */
+  /* Crack builds in 3 beats: krak – krak – krak (50% slower) */
   #yamato-intro #cracks .g1,
   #yamato-intro #cracks .g2,
   #yamato-intro #cracks .g3 { opacity: 0; }
-  #yamato-intro #cracks .g1 { animation: yi-crackSnap 0.1s ease-out forwards 0.45s; }
-  #yamato-intro #cracks .g2 { animation: yi-crackSnap 0.1s ease-out forwards 0.95s; }
-  #yamato-intro #cracks .g3 { animation: yi-crackSnap 0.1s ease-out forwards 1.45s; }
+  #yamato-intro #cracks .g1 { animation: yi-crackSnap 0.1s ease-out forwards 0.5s; }
+  #yamato-intro #cracks .g2 { animation: yi-crackSnap 0.1s ease-out forwards 1.25s; }
+  #yamato-intro #cracks .g3 { animation: yi-crackSnap 0.1s ease-out forwards 2.0s; }
   @keyframes yi-crackSnap {
     0%   { opacity: 0; }
     100% { opacity: 1; }
@@ -68,7 +68,7 @@ const INTRO_CSS = `
     z-index: 30;
     opacity: 0;
     pointer-events: none;
-    animation: yi-flashPulse 0.35s ease-out forwards 1.85s;
+    animation: yi-flashPulse 0.35s ease-out forwards 2.35s;
   }
   @keyframes yi-flashPulse {
     0%   { opacity: 0; }
@@ -102,7 +102,7 @@ const INTRO_CSS = `
     align-items: center;
     justify-content: center;
     opacity: 0;
-    animation: yi-finalIn 0.6s cubic-bezier(.2,.8,.2,1.1) forwards 1.75s;
+    animation: yi-finalIn 0.6s cubic-bezier(.2,.8,.2,1.1) forwards 2.25s;
   }
   @keyframes yi-finalIn {
     0%   { opacity: 0; transform: scale(0.85); filter: brightness(2.2) blur(2px); }
@@ -123,7 +123,7 @@ const INTRO_CSS = `
     transform: translate(-50%,-50%);
     opacity: 0;
     pointer-events: none;
-    animation: yi-hotspotIn 0.4s ease-out forwards 2.3s;
+    animation: yi-hotspotIn 0.4s ease-out forwards 2.8s;
   }
   #yamato-intro #hotspotWrap.active { pointer-events: auto; }
   @keyframes yi-hotspotIn { to { opacity: 1; } }
@@ -159,7 +159,8 @@ const INTRO_CSS = `
   #yamato-intro #pressLabel {
     position: absolute;
     inset: 0;
-    z-index: 40;
+    /* no z-index here: each word manages its own layer so the crack
+       can run over ANY (6 < cracks 7) but under PRESS/BUTTON (40) */
     color: #ffffff;
     font-family: 'Bahnschrift SemiCondensed','Bahnschrift','Play','Arial Narrow',Arial,sans-serif;
     font-stretch: condensed;
@@ -169,7 +170,11 @@ const INTRO_CSS = `
     text-transform: uppercase;
     line-height: 1;
     text-align: center;
-    text-shadow: 0 3px 12px rgba(0,0,0,0.45);
+    text-shadow:
+      -1px 2px 0 #000,
+      -2px 4px 0 #000,
+      -3px 6px 0 #000,
+      -4px 8px 12px rgba(0,0,0,0.5);
     opacity: 0;
     pointer-events: none;
     animation: yi-labelIn 0.4s ease-out forwards 0.1s;
@@ -178,12 +183,14 @@ const INTRO_CSS = `
   #yamato-intro #pressLabel .word {
     position: absolute;
     left: 0; right: 0;
+    z-index: 40;
   }
   #yamato-intro #pressTop { top: 6%; }
   #yamato-intro #anyWord {
     top: 45.5%;
     transform: translateY(-50%);
-    animation: yi-anyOut 0.3s ease-out forwards 1.8s;
+    z-index: 6; /* under the cracks: the krak runs across ANY too */
+    animation: yi-anyOut 0.3s ease-out forwards 2.3s;
   }
   @keyframes yi-anyOut { to { opacity: 0; } }
   #yamato-intro #pressBottom { bottom: 6%; }
@@ -256,7 +263,7 @@ export default function IntroPage({ onEnter }) {
         const w = 14 + Math.random() * 46
         const h = 14 + Math.random() * 46
         const dur = 0.75 + Math.random() * 0.6
-        const delay = 1.6 + Math.random() * 0.14
+        const delay = 2.1 + Math.random() * 0.14
         const clip = shapes[Math.floor(Math.random() * shapes.length)]
         const dark = Math.random() > 0.4
         const c1 = dark ? '#4a0a0f' : '#d9384a'
@@ -278,7 +285,7 @@ export default function IntroPage({ onEnter }) {
     }
 
     // Activate hotspot after animation completes
-    const activateDelay = reduceMotion ? 0 : 2400
+    const activateDelay = reduceMotion ? 0 : 2900
     const timer = setTimeout(() => {
       if (hotspotWrapRef.current) hotspotWrapRef.current.classList.add('active')
     }, activateDelay)

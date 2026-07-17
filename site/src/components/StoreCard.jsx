@@ -2,17 +2,25 @@ export default function StoreCard({ store }) {
   return (
     <div className={`card-dark overflow-hidden ${!store.active ? 'opacity-60' : ''}`}>
 
-      {/* Video / placeholder */}
-      {store.video_url ? (
+      {/* Video / photo / placeholder */}
+      {store.video_url || store.image_url ? (
         <div className="relative aspect-video bg-black overflow-hidden">
-          <video
-            src={store.video_url}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
+          {store.video_url ? (
+            <video
+              src={store.video_url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={store.image_url}
+              alt={store.name}
+              className="w-full h-full object-cover"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
           {store.active && !store.opening_soon && (
             <div className="absolute bottom-3 left-3 flex items-center gap-1.5">

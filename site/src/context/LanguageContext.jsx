@@ -155,7 +155,7 @@ const translations = {
         ],
       },
       gaming: {
-        hero: { sub: 'YA Gaming', title: 'The Game Floor', desc: '100+ premium arcade machines across 10 categories. From cutting-edge VR to timeless classics.' },
+        hero: { sub: 'Gaming', title: 'The Game Floor', desc: '100+ premium arcade machines across 10 categories. From cutting-edge VR to timeless classics.' },
         search: 'Search games…', all: 'All', noResults: 'No games found.',
       },
       social: {
@@ -181,7 +181,7 @@ const translations = {
         stats: [['Weekly','Local tournaments'],['All Levels','Beginner to Pro'],['Prizes','Win exclusive cards'],['Community','Grow your skills']],
       },
       bundles: {
-        hero: { sub: 'Bundles & Passes', title: 'Play Your Way.', desc: 'YAMATO Playcard, Summer Pass, Whole Gang Pass, and Gift Cards. Available at all locations.' },
+        hero: { sub: 'Bundles & Passes', title: 'Play Your Way.', desc: 'YAMATO Playcard and Gift Cards. Available at all locations.' },
         custom: { title: 'Need something specific?', desc: 'Group bookings, corporate events, birthday packages — we\'ll tailor it for you.', cta: 'Contact Us' },
       },
       howto: {
@@ -520,7 +520,7 @@ const translations = {
         ],
       },
       gaming: {
-        hero: { sub: 'YA Gaming', title: 'Το Game Floor', desc: '100+ premium arcade μηχανήματα σε 10 κατηγορίες. Από πρωτοποριακό VR μέχρι διαχρονικά κλασικά.' },
+        hero: { sub: 'Gaming', title: 'Το Game Floor', desc: '100+ premium arcade μηχανήματα σε 10 κατηγορίες. Από πρωτοποριακό VR μέχρι διαχρονικά κλασικά.' },
         search: 'Αναζήτηση games…', all: 'Όλα', noResults: 'Δεν βρέθηκαν games.',
       },
       social: {
@@ -546,7 +546,7 @@ const translations = {
         stats: [['Εβδομαδιαία','Τοπικά τουρνουά'],['Όλα τα Επίπεδα','Αρχάριος έως Pro'],['Βραβεία','Κέρδισε αποκλειστικές κάρτες'],['Κοινότητα','Ανάπτυξε τις δεξιότητές σου']],
       },
       bundles: {
-        hero: { sub: 'Πακέτα & Πάσα', title: 'Παίξε Όπως Θέλεις.', desc: 'YAMATO Playcard, Summer Pass, Whole Gang Pass και Gift Cards. Διαθέσιμα σε όλες τις τοποθεσίες.' },
+        hero: { sub: 'Πακέτα & Πάσα', title: 'Παίξε Όπως Θέλεις.', desc: 'YAMATO Playcard και Gift Cards. Διαθέσιμα σε όλες τις τοποθεσίες.' },
         custom: { title: 'Χρειάζεσαι κάτι συγκεκριμένο;', desc: 'Ομαδικές κρατήσεις, εταιρικές εκδηλώσεις, πακέτα γενεθλίων — θα το προσαρμόσουμε για σένα.', cta: 'Επικοινωνία' },
       },
       howto: {
@@ -830,7 +830,7 @@ const translations = {
       bundles: {
         sub: 'もっと遊ぼう、節約しよう',
         title: 'バンドル＆パス',
-        desc: 'YAMATOプレイカード、サマーパス、ホールギャングパス、ギフトカード。',
+        desc: 'YAMATOプレイカード、ギフトカード。',
         cta: 'パスを見る',
       },
       faq: { sub: '質問', title: 'よくある質問', cta: '遊び方＋完全FAQ' },
@@ -884,7 +884,7 @@ const translations = {
         ],
       },
       gaming: {
-        hero: { sub: 'YAゲーミング', title: 'ゲームフロア', desc: '10カテゴリーの100以上のプレミアムアーケード機。' },
+        hero: { sub: 'ゲーミング', title: 'ゲームフロア', desc: '10カテゴリーの100以上のプレミアムアーケード機。' },
         search: 'ゲームを検索…', all: '全て', noResults: 'ゲームが見つかりません。',
       },
       social: {
@@ -910,7 +910,7 @@ const translations = {
         stats: [['毎週','地域トーナメント'],['全レベル','初心者からプロまで'],['賞品','限定カードを獲得'],['コミュニティ','スキルを向上']],
       },
       bundles: {
-        hero: { sub: 'バンドル＆パス', title: '自分流に遊ぼう。', desc: 'YAMATOプレイカード、サマーパス、ホールギャングパス、ギフトカード。' },
+        hero: { sub: 'バンドル＆パス', title: '自分流に遊ぼう。', desc: 'YAMATOプレイカード、ギフトカード。' },
         custom: { title: '特定のものが必要ですか？', desc: 'グループ予約、コーポレートイベント、誕生日パッケージ。', cta: 'お問い合わせ' },
       },
       howto: {

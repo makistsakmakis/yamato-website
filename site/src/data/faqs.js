@@ -56,15 +56,6 @@ export const faqs = [
     // CTA to e-shop hidden for later: cta:{ to:"/shop?category=TCG", label:{ en:"Shop TCG", el:"Αγορά TCG", ja:"TCGを見る" } },
   },
   {
-    id:"7", category:"passes", order:7,
-    q:{ en:"What is the Summer Pass?", el:"Τι είναι το Summer Pass;", ja:"サマーパスとは？" },
-    a:{
-      en:"The Summer Pass gives unlimited play throughout the summer at any YAMATO location, plus exclusive perks and priority access.",
-      el:"Το Summer Pass δίνει απεριόριστο παιχνίδι όλο το καλοκαίρι σε κάθε YAMATO, με αποκλειστικά προνόμια και προτεραιότητα.",
-      ja:"サマーパスは夏の間、どのYAMATO店舗でも遊び放題。限定特典と優先アクセス付き。",
-    },
-  },
-  {
     id:"8", category:"store", order:8,
     q:{ en:"Where are YAMATO locations?", el:"Πού βρίσκονται τα YAMATO;", ja:"YAMATOの店舗はどこですか？" },
     a:{

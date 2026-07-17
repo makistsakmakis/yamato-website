@@ -71,40 +71,53 @@ function ExperienceTabs() {
       </div>
 
       {/* Panel */}
-      <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-        {/* Left: text + CTAs */}
-        <div className="flex flex-col">
-          <h3 className="text-3xl md:text-4xl font-black text-white uppercase leading-tight mb-6">{content.punch}</h3>
-          <p className="text-white/50 text-lg md:text-xl leading-relaxed max-w-md mb-auto">{content.body}</p>
-          <div className="flex flex-col sm:flex-row gap-3 mt-8">
-            <Link to={meta.to[0]} className="btn-secondary flex-1 text-center text-sm px-6 py-3.5">{content.cta1}</Link>
-            <Link to={meta.to[1]} className="btn-secondary flex-1 text-center text-sm px-6 py-3.5">{content.cta2}</Link>
-          </div>
-        </div>
-        {/* Right: photo / carousel */}
-        <div className="relative h-64 sm:h-80 md:h-full md:min-h-[360px] bg-yamato-gray rounded-sm overflow-hidden border border-white/5">
-          {meta.photos.map((src, i) => (
-            <img
-              key={src}
-              src={src}
-              alt={tb_alt(meta.en)}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === photoIdx ? 'opacity-100' : 'opacity-0'}`}
-            />
-          ))}
-          {meta.photos.length > 1 && (
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-              {meta.photos.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setPhotoIdx(i)}
-                  className={`w-2 h-2 rounded-full transition-colors ${i === photoIdx ? 'bg-yamato-red' : 'bg-white/40'}`}
-                  aria-label={`Photo ${i + 1}`}
-                />
-              ))}
+      {(() => {
+        const photoBlock = (
+          <>
+            {meta.photos.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={tb_alt(meta.en)}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === photoIdx ? 'opacity-100' : 'opacity-0'}`}
+              />
+            ))}
+            {meta.photos.length > 1 && (
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                {meta.photos.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setPhotoIdx(i)}
+                    className={`w-2 h-2 rounded-full transition-colors ${i === photoIdx ? 'bg-yamato-red' : 'bg-white/40'}`}
+                    aria-label={`Photo ${i + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </>
+        )
+        return (
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+            {/* Left: text + CTAs (photo inserted after heading on mobile only) */}
+            <div className="flex flex-col">
+              <h3 className="text-3xl md:text-4xl font-black text-white uppercase leading-tight mb-6">{content.punch}</h3>
+              {/* Mobile-only photo: between heading and body text */}
+              <div className="md:hidden relative h-64 sm:h-80 bg-yamato-gray rounded-sm overflow-hidden border border-white/5 mb-6">
+                {photoBlock}
+              </div>
+              <p className="text-white/50 text-lg md:text-xl leading-relaxed max-w-md mb-auto">{content.body}</p>
+              <div className="flex flex-col sm:flex-row gap-3 mt-8">
+                <Link to={meta.to[0]} className="btn-secondary flex-1 text-center text-sm px-6 py-3.5">{content.cta1}</Link>
+                <Link to={meta.to[1]} className="btn-secondary flex-1 text-center text-sm px-6 py-3.5">{content.cta2}</Link>
+              </div>
             </div>
-          )}
-        </div>
-      </div>
+            {/* Right: photo / carousel (desktop only) */}
+            <div className="hidden md:block relative h-64 sm:h-80 md:h-full md:min-h-[360px] bg-yamato-gray rounded-sm overflow-hidden border border-white/5">
+              {photoBlock}
+            </div>
+          </div>
+        )
+      })()}
     </div>
   )
 }
@@ -168,7 +181,7 @@ export default function Home() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center hero-grid overflow-hidden">
+      <section className="relative min-h-screen flex items-start pt-24 pb-16 md:pt-0 md:pb-0 md:items-center justify-center hero-grid overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-yamato-black/50 to-yamato-black" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yamato-red/10 rounded-full blur-3xl pointer-events-none" />
         {/* Giant Japanese watermark — 温かい歓迎 (warm welcome) */}

@@ -19,10 +19,26 @@ import MyYamato from './pages/MyYamato'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 
 export default function App() {
-  const [showIntro, setShowIntro] = useState(true)
+  // Intro video plays once per visit (not again on refresh/navigation in the same session)
+  const [showIntro, setShowIntro] = useState(() => {
+    try {
+      return !sessionStorage.getItem('yamato-intro-seen')
+    } catch {
+      return true
+    }
+  })
+
+  const handleIntroEnter = () => {
+    try {
+      sessionStorage.setItem('yamato-intro-seen', '1')
+    } catch {
+      // sessionStorage unavailable (private mode edge cases) — just continue
+    }
+    setShowIntro(false)
+  }
 
   if (showIntro) {
-    return <IntroPage onEnter={() => setShowIntro(false)} />
+    return <IntroPage onEnter={handleIntroEnter} />
   }
 
   return (

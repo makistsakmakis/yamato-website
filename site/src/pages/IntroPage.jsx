@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
-const VIDEO_SRC = '/videos/intro%20video%20website_V5_compressed.mp4'
+// Desktop (16:9) and mobile (9:16 portrait) versions of the intro
+const VIDEO_DESKTOP = '/videos/intro%20video%20website_V5_compressed.mp4'
+const VIDEO_MOBILE = '/videos/intro%20video%20website_V5_MOB.mp4'
+
+// Portrait screens (phones) get the vertical version; landscape (PC/tablet) the wide one
+const pickVideoSrc = () =>
+  window.matchMedia('(orientation: portrait)').matches ? VIDEO_MOBILE : VIDEO_DESKTOP
 
 const INTRO_CSS = `
   #yamato-intro {
@@ -31,6 +37,7 @@ export default function IntroPage({ onEnter }) {
   const wrapRef = useRef(null)
   const doneRef = useRef(false)
   const [failed, setFailed] = useState(false)
+  const [videoSrc] = useState(pickVideoSrc)
 
   const finish = () => {
     if (doneRef.current) return
@@ -80,7 +87,7 @@ export default function IntroPage({ onEnter }) {
     <div id="yamato-intro" ref={wrapRef}>
       <video
         ref={videoRef}
-        src={VIDEO_SRC}
+        src={videoSrc}
         autoPlay
         muted
         playsInline
